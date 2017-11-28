@@ -7,6 +7,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>tech-test Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.9.RELEASE</version>
+ </parent>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -15,11 +21,18 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-    <groupId>spy</groupId>
-    <artifactId>memcached</artifactId>
-    <version>2.5</version>
-</dependency>
+	<dependency>
+	    <groupId>net.spy</groupId>
+	    <artifactId>spymemcached</artifactId>
+	    <version>2.12.3</version>
+	</dependency>
+
+	
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+	
   </dependencies>
   <build>
     <finalName>tech-test</finalName>
