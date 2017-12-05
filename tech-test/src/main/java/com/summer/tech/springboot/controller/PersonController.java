@@ -59,4 +59,9 @@ public class PersonController {
 	public void psersonUpdate(@PathVariable("id") Integer id) {
 		respository.delete(id);
 	}
+
+	@GetMapping(value = "/persons/name/{name}")
+	public List<Person> psersonListByName(@PathVariable("name") String name) {
+		return respository.findByName(name);
+	}
 }
