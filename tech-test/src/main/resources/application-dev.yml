@@ -1,0 +1,3 @@
+server:
+  context-path: /boy
+  port: 8081
