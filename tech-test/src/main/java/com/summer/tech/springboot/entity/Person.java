@@ -1,9 +1,9 @@
 package com.summer.tech.springboot.entity;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Person {
@@ -16,6 +16,7 @@ public class Person {
 
 	private String gender;
 
+	@Min(value=15,message="年龄小于15岁不满足要求")
 	private int age;
 
 	public int getId() {

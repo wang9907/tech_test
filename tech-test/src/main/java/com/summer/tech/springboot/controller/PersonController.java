@@ -2,7 +2,10 @@ package com.summer.tech.springboot.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +35,15 @@ public class PersonController {
 		person.setName(name);
 		person.setGender(gender);
 		person.setAge(age);
+		return respository.save(person);
+	}
+
+	@PostMapping(value = "/persons1")
+	public Person psersonAdd(@Valid Person person,BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println(result.getFieldError().getDefaultMessage());
+			return null;
+		}
 		return respository.save(person);
 	}
 
