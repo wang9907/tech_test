@@ -10,7 +10,7 @@ public class Person {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 
 	private String name;
 
@@ -19,11 +19,11 @@ public class Person {
 	@Min(value=15,message="年龄小于15岁不满足要求")
 	private int age;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

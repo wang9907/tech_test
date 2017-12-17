@@ -1,6 +1,8 @@
 package com.summer.tech.springboot.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,4 +29,9 @@ public class PersonService {
 		respository.save(person);
 
 	}
+	
+	public Person findById(Integer id){
+		return respository.findOne(id);
+	}
+	
 }
