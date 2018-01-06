@@ -41,6 +41,13 @@ public class EzmorphTest {
 				morperRegistry));
 		Calendar myBean = (Calendar) morperRegistry.morph(
 				GregorianCalendar.class, dynaBean);
+		
+		Student student = new Student();  
+		student.setName("chb");  
+		morperRegistry.registerMorpher(new BeanMorpher(Teacher.class,morperRegistry));  
+		Teacher teacher = (Teacher) morperRegistry.morph(Teacher.class, student);  
+		System.out.println(teacher.getId());  
+		System.out.println(teacher.getName());
 	}
 
 }
