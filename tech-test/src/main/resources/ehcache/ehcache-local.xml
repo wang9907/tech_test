@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="defaultCache">
+  <!-- 本地缓存-->
+    <diskStore path="java.io.tmpdir" />
+    <!--timeToIdleSeconds=y：缓存创建以后，最后一次访问缓存的日期至失效之时的时间间隔y;timeToLiveSeconds=x：缓存自创建日期起至失效时的间隔时间x;-->
+    <defaultCache maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="600"
+        overflowToDisk="true" maxElementsOnDisk="10000000" />
+
+    <!-- 系统缓存 -->
+    <cache name="sysCache" maxElementsInMemory="1000" eternal="true" overflowToDisk="true"/>
+
+    <cache name="shiro-activeSessionCache"
+           maxElementsInMemory="1000"
+           overflowToDisk="true"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="600"/>
+</ehcache>
