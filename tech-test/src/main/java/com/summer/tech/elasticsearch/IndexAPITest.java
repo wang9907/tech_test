@@ -21,6 +21,7 @@ public class IndexAPITest {
         json.put("message", "trying out Elasticsearch");
         IndexResponse response = client.prepareIndex("twitter", "tweet", "1").setSource(json).execute()
                 .actionGet();
+        System.out.println(response.getIndex());
         client.close();
     }
 
