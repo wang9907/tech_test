@@ -1,12 +1,12 @@
-package com.summer.tech.jws;
+package com.summer.tech.jws.calculate;
 
 import javax.jws.WebService;
 
 @WebService
 public class CalculateImpl implements Calculate {
 
-	public int calculate(int x, int y) {
-		return x + y;
+	public String add(int x, int y) {
+		return "hello world";
 	}
 
 }
