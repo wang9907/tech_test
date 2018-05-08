@@ -5,5 +5,5 @@ import javax.jws.WebService;
 @WebService
 public interface Calculate {
 
-	public String add(int x, int y) throws java.rmi.RemoteException;
+	public String add(int x, int y);
 }
