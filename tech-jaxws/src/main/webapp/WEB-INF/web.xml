@@ -13,6 +13,12 @@
   		<param-name>jersey.config.server.provider.packages</param-name>
   		<param-value>com.summer.tech.jws.rs.javase.resource</param-value>
   	</init-param>
+  	<!-- 
+  	<init-param>
+  		<param-name>jersey.config.server.wadl.disableWadl</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  	 -->
   	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
