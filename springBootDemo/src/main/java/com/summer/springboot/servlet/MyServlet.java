@@ -18,6 +18,7 @@ public class MyServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+			resp.getWriter().println("测试内容");
 	}
 
 

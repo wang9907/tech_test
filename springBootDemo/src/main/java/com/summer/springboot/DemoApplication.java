@@ -2,6 +2,7 @@ package com.summer.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import com.summer.springboot.servlet.MyServlet;
 
 @SpringBootApplication
+@ServletComponentScan
 public class DemoApplication {
 
 	@Bean
@@ -17,9 +19,9 @@ public class DemoApplication {
 	}
 
 	/**
-     * 修改DispatcherServlet默认配置
+     * 修改DispatcherServlet默认配置 默认是 /
      */
-	@Bean
+	/*@Bean
 	public ServletRegistrationBean dispatcherRegistration(
 			DispatcherServlet dispatcherServlet) {
 		ServletRegistrationBean registration = new ServletRegistrationBean(
@@ -28,7 +30,7 @@ public class DemoApplication {
 		registration.addUrlMappings("*.do");
 		registration.addUrlMappings("*.htm");
 		return registration;
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
