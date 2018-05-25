@@ -1,4 +1,4 @@
-package com.summer.springboot.controller;
+package com.summer.tech.springboot.controller;
 
 import java.io.IOException;
 

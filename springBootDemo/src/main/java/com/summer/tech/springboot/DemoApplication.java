@@ -1,13 +1,12 @@
-package com.summer.springboot;
+package com.summer.tech.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.DispatcherServlet;
 
-import com.summer.springboot.servlet.MyServlet;
+import com.summer.tech.springboot.servlet.MyServlet;
 
 @SpringBootApplication
 @ServletComponentScan
