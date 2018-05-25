@@ -1,4 +1,4 @@
-package com.summer.springboot;
+package com.summer.tech.springboot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

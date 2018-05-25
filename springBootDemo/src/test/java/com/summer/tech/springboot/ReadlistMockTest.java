@@ -1,4 +1,4 @@
-package com.summer.tech;
+package com.summer.tech.springboot;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,18 +21,18 @@ public class ReadlistMockTest {
 
 	@Autowired
 	private WebApplicationContext applicationContext;
-	
+
 	private MockMvc mockMvc;
-	
+
 	public ReadlistMockTest() {
-		
+
 	}
-	
+
 	@Before
 	public void setupMockMVC(){
 		mockMvc = MockMvcBuilders.webAppContextSetup(applicationContext).build();
 	}
-	
+
 	@Test
 	public void homepage() throws Exception{
 		mockMvc.perform(MockMvcRequestBuilders.get("/readingList"))
