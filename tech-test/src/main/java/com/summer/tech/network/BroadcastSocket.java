@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class BroadcastSocket implements Runnable {
 	// 多点广播地址224.0.0.1~239.255.255.255
 	private static final String BROADCAST_IP = "23O.0.0.1";
-	private static final int BROADCAST_PORT = 3000;
+	private static final int BROADCAST_PORT = 3001;
 	private static final int DATA_LEN = 4096;
 	private MulticastSocket socket = null;
 	private InetAddress broadcastAddress = null;
@@ -28,7 +28,7 @@ public class BroadcastSocket implements Runnable {
 		try {
 			scan = new Scanner(System.in);
 			socket = new MulticastSocket(BROADCAST_PORT);
-			broadcastAddress = InetAddress.getByName(BROADCAST_IP);
+			broadcastAddress = InetAddress.getByAddress(new byte[]{(byte)230,(byte)0,(byte)0,(byte)1});
 			socket.joinGroup(broadcastAddress);
 			// 设置是否阻止MulticastSocket会把消息发给自身，true表示阻止
 			socket.setLoopbackMode(false);
