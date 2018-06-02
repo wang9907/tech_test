@@ -3,6 +3,7 @@ package com.summer.tech.network;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class UdpServer {
 
@@ -25,6 +26,9 @@ public class UdpServer {
 
 	public void init() throws IOException {
 		try (DatagramSocket socket = new DatagramSocket(PORT)) {
+			System.out.println(InetAddress.getLocalHost().getHostName());
+			System.out.println(InetAddress.getLocalHost().getHostAddress());
+			System.out.println(InetAddress.getLocalHost().getCanonicalHostName());
 			for (int i = 0; i < 1000; i++) {
 				// 读取socket中的数据，读到的数据放入inPacket封装的数组里
 				socket.receive(inPacket);
@@ -35,7 +39,7 @@ public class UdpServer {
 				// 从字符串数组取出一个元素作为发送数据
 				byte[] sendData = books[i % 4].getBytes();
 				// 以指定的字节数组作为发送数据，以刚收到的DatagramPacket的源SocketAddress作为目标SocketAddress创建DatagramPacket
-				outPacket = new DatagramPacket(sendData, sendData.length,inPacket.getSocketAddress()); 
+				outPacket = new DatagramPacket(sendData, sendData.length,inPacket.getSocketAddress());
 				socket.send(outPacket);
 			}
 		}
