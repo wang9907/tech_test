@@ -26,12 +26,23 @@ public class ChatMap<K,V> {
 		return result;
 	}
 	
-	public synchronized K getKey(V val){
-		for(K key:map.keySet()){
-			if(map.get(key)==val || map.get(key).equals(val)){
-				return key;
-			}
-		}
-		return null;
-	}
+	//根据ouputStream对象查找用户名
+    public synchronized K getKeyByValue(V val) {
+        for(K key : map.keySet()) {
+            if (map.get(key) == val || map.get(key).equals(val)) {
+                return key;
+            }
+        }
+        return null;
+    }
+    
+    //实现put,key和value都不允许重复
+    public synchronized V put(K key, V value) {
+        for (V val : valueSet() ) {
+                if (val.equals(value) && val.hashCode() == value.hashCode()) {
+                    throw new RuntimeException("此输入流已经被使用");
+            }
+        }
+        return map.put(key, value);
+    }
 }
