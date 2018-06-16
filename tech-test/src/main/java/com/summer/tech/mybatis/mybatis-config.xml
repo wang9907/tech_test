@@ -21,6 +21,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+    <mapper resource="com/summer/tech/mybatis/mapper/DoctorMapper.xml" />
   </mappers>
 </configuration>
