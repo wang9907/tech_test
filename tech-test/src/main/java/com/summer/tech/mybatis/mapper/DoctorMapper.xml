@@ -1,0 +1,2186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summer.tech.mybatis.dao.DoctorMapper">
+  <resultMap id="BaseResultMap" type="com.summer.tech.mybatis.model.Doctor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="hospital" jdbcType="VARCHAR" property="hospital" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="headpic" jdbcType="VARCHAR" property="headpic" />
+    <result column="yipenghao" jdbcType="INTEGER" property="yipenghao" />
+    <result column="tdcodeurl" jdbcType="VARCHAR" property="tdcodeurl" />
+    <result column="auth_photo" jdbcType="VARCHAR" property="authPhoto" />
+    <result column="auth_status" jdbcType="TINYINT" property="authStatus" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="isshowdetail" jdbcType="TINYINT" property="isshowdetail" />
+    <result column="iscybersquatting" jdbcType="TINYINT" property="iscybersquatting" />
+    <result column="busy_status" jdbcType="TINYINT" property="busyStatus" />
+    <result column="registertime" jdbcType="TIMESTAMP" property="registertime" />
+    <result column="answerphone" jdbcType="VARCHAR" property="answerphone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="invite_code" jdbcType="VARCHAR" property="inviteCode" />
+    <result column="enabled" jdbcType="TINYINT" property="enabled" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
+    <result column="bank_user_name" jdbcType="VARCHAR" property="bankUserName" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="auth_time" jdbcType="TIMESTAMP" property="authTime" />
+    <result column="monthlycost" jdbcType="DECIMAL" property="monthlycost" />
+    <result column="weeklycost" jdbcType="DECIMAL" property="weeklycost" />
+    <result column="phonecost" jdbcType="DECIMAL" property="phonecost" />
+    <result column="serve_txtconsult" jdbcType="TINYINT" property="serveTxtconsult" />
+    <result column="serve_plossign" jdbcType="TINYINT" property="servePlossign" />
+    <result column="serve_regvarvisit" jdbcType="TINYINT" property="serveRegvarvisit" />
+    <result column="serve_phoneconsult" jdbcType="TINYINT" property="servePhoneconsult" />
+    <result column="auth_pass_time" jdbcType="TIMESTAMP" property="authPassTime" />
+    <result column="isfree" jdbcType="TINYINT" property="isfree" />
+    <result column="onetimecost" jdbcType="DECIMAL" property="onetimecost" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="dailynum" jdbcType="INTEGER" property="dailynum" />
+    <result column="zixunnum" jdbcType="INTEGER" property="zixunnum" />
+    <result column="interest" jdbcType="VARCHAR" property="interest" />
+    <result column="isfamilydoctor" jdbcType="TINYINT" property="isfamilydoctor" />
+    <result column="serve_privateDoctors" jdbcType="TINYINT" property="servePrivatedoctors" />
+    <result column="oneDepartment_id" jdbcType="BIGINT" property="onedepartmentId" />
+    <result column="twoDepartment_id" jdbcType="BIGINT" property="twodepartmentId" />
+    <result column="doctorWeixinGroup_id" jdbcType="BIGINT" property="doctorweixingroupId" />
+    <result column="isNoShowClient" jdbcType="TINYINT" property="isnoshowclient" />
+    <result column="alipayName" jdbcType="VARCHAR" property="alipayname" />
+    <result column="alipayCardNumber" jdbcType="VARCHAR" property="alipaycardnumber" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+    <result column="hospital_id" jdbcType="BIGINT" property="hospitalId" />
+    <result column="trialType" jdbcType="TINYINT" property="trialtype" />
+    <result column="trialPhone" jdbcType="VARCHAR" property="trialphone" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
+    <result column="isCooperation" jdbcType="TINYINT" property="iscooperation" />
+    <result column="homeAddress" jdbcType="VARCHAR" property="homeaddress" />
+    <result column="communicationSkills" jdbcType="VARCHAR" property="communicationskills" />
+    <result column="personality" jdbcType="VARCHAR" property="personality" />
+    <result column="professionalDegree" jdbcType="VARCHAR" property="professionaldegree" />
+    <result column="serviceAttitude" jdbcType="VARCHAR" property="serviceattitude" />
+    <result column="satisfaction" jdbcType="VARCHAR" property="satisfaction" />
+    <result column="weChatID" jdbcType="VARCHAR" property="wechatid" />
+    <result column="isDocRegiter" jdbcType="TINYINT" property="isdocregiter" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="showPlatform" jdbcType="TINYINT" property="showplatform" />
+    <result column="practitioners" jdbcType="VARCHAR" property="practitioners" />
+    <result column="impressionTag" jdbcType="VARCHAR" property="impressiontag" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="hospitalize_product_code" jdbcType="VARCHAR" property="hospitalizeProductCode" />
+    <result column="hospitalize_price" jdbcType="DECIMAL" property="hospitalizePrice" />
+    <result column="phone_consult_product_code" jdbcType="VARCHAR" property="phoneConsultProductCode" />
+    <result column="phone_consult_price" jdbcType="DECIMAL" property="phoneConsultPrice" />
+    <result column="txt_consult_product_code" jdbcType="VARCHAR" property="txtConsultProductCode" />
+    <result column="txt_consult_price" jdbcType="DECIMAL" property="txtConsultPrice" />
+    <result column="famous_doctor_level" jdbcType="VARCHAR" property="famousDoctorLevel" />
+    <result column="qrurl_str" jdbcType="VARCHAR" property="qrurlStr" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hospital, department, jobtitle, headpic, yipenghao, tdcodeurl, auth_photo, auth_status, 
+    gender, birthday, phone, password, email, isshowdetail, iscybersquatting, busy_status, 
+    registertime, answerphone, name, invite_code, enabled, bank_card_no, bank_user_name, 
+    bank_name, last_login_time, auth_time, monthlycost, weeklycost, phonecost, serve_txtconsult, 
+    serve_plossign, serve_regvarvisit, serve_phoneconsult, auth_pass_time, isfree, onetimecost, 
+    platform, dailynum, zixunnum, interest, isfamilydoctor, serve_privateDoctors, oneDepartment_id, 
+    twoDepartment_id, doctorWeixinGroup_id, isNoShowClient, alipayName, alipayCardNumber, 
+    area_id, areaName, hospital_id, trialType, trialPhone, openid, bank_address, isCooperation, 
+    homeAddress, communicationSkills, personality, professionalDegree, serviceAttitude, 
+    satisfaction, weChatID, isDocRegiter, type, showPlatform, practitioners, impressionTag, 
+    grade, update_time, hospitalize_product_code, hospitalize_price, phone_consult_product_code, 
+    phone_consult_price, txt_consult_product_code, txt_consult_price, famous_doctor_level, 
+    qrurl_str
+  </sql>
+  <sql id="Blob_Column_List">
+    introduction, description, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    insert into doctor (id, hospital, department, 
+      jobtitle, headpic, yipenghao, 
+      tdcodeurl, auth_photo, auth_status, 
+      gender, birthday, phone, 
+      password, email, isshowdetail, 
+      iscybersquatting, busy_status, registertime, 
+      answerphone, name, invite_code, 
+      enabled, bank_card_no, bank_user_name, 
+      bank_name, last_login_time, auth_time, 
+      monthlycost, weeklycost, phonecost, 
+      serve_txtconsult, serve_plossign, serve_regvarvisit, 
+      serve_phoneconsult, auth_pass_time, isfree, 
+      onetimecost, platform, dailynum, 
+      zixunnum, interest, isfamilydoctor, 
+      serve_privateDoctors, oneDepartment_id, twoDepartment_id, 
+      doctorWeixinGroup_id, isNoShowClient, alipayName, 
+      alipayCardNumber, area_id, areaName, 
+      hospital_id, trialType, trialPhone, 
+      openid, bank_address, isCooperation, 
+      homeAddress, communicationSkills, personality, 
+      professionalDegree, serviceAttitude, satisfaction, 
+      weChatID, isDocRegiter, type, 
+      showPlatform, practitioners, impressionTag, 
+      grade, update_time, hospitalize_product_code, 
+      hospitalize_price, phone_consult_product_code, 
+      phone_consult_price, txt_consult_product_code, 
+      txt_consult_price, famous_doctor_level, qrurl_str, 
+      introduction, description, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{hospital,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{jobtitle,jdbcType=VARCHAR}, #{headpic,jdbcType=VARCHAR}, #{yipenghao,jdbcType=INTEGER}, 
+      #{tdcodeurl,jdbcType=VARCHAR}, #{authPhoto,jdbcType=VARCHAR}, #{authStatus,jdbcType=TINYINT}, 
+      #{gender,jdbcType=TINYINT}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isshowdetail,jdbcType=TINYINT}, 
+      #{iscybersquatting,jdbcType=TINYINT}, #{busyStatus,jdbcType=TINYINT}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{answerphone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=TINYINT}, #{bankCardNo,jdbcType=VARCHAR}, #{bankUserName,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{authTime,jdbcType=TIMESTAMP}, 
+      #{monthlycost,jdbcType=DECIMAL}, #{weeklycost,jdbcType=DECIMAL}, #{phonecost,jdbcType=DECIMAL}, 
+      #{serveTxtconsult,jdbcType=TINYINT}, #{servePlossign,jdbcType=TINYINT}, #{serveRegvarvisit,jdbcType=TINYINT}, 
+      #{servePhoneconsult,jdbcType=TINYINT}, #{authPassTime,jdbcType=TIMESTAMP}, #{isfree,jdbcType=TINYINT}, 
+      #{onetimecost,jdbcType=DECIMAL}, #{platform,jdbcType=VARCHAR}, #{dailynum,jdbcType=INTEGER}, 
+      #{zixunnum,jdbcType=INTEGER}, #{interest,jdbcType=VARCHAR}, #{isfamilydoctor,jdbcType=TINYINT}, 
+      #{servePrivatedoctors,jdbcType=TINYINT}, #{onedepartmentId,jdbcType=BIGINT}, #{twodepartmentId,jdbcType=BIGINT}, 
+      #{doctorweixingroupId,jdbcType=BIGINT}, #{isnoshowclient,jdbcType=TINYINT}, #{alipayname,jdbcType=VARCHAR}, 
+      #{alipaycardnumber,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT}, #{areaname,jdbcType=VARCHAR}, 
+      #{hospitalId,jdbcType=BIGINT}, #{trialtype,jdbcType=TINYINT}, #{trialphone,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{iscooperation,jdbcType=TINYINT}, 
+      #{homeaddress,jdbcType=VARCHAR}, #{communicationskills,jdbcType=VARCHAR}, #{personality,jdbcType=VARCHAR}, 
+      #{professionaldegree,jdbcType=VARCHAR}, #{serviceattitude,jdbcType=VARCHAR}, #{satisfaction,jdbcType=VARCHAR}, 
+      #{wechatid,jdbcType=VARCHAR}, #{isdocregiter,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, 
+      #{showplatform,jdbcType=TINYINT}, #{practitioners,jdbcType=VARCHAR}, #{impressiontag,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{hospitalizeProductCode,jdbcType=VARCHAR}, 
+      #{hospitalizePrice,jdbcType=DECIMAL}, #{phoneConsultProductCode,jdbcType=VARCHAR}, 
+      #{phoneConsultPrice,jdbcType=DECIMAL}, #{txtConsultProductCode,jdbcType=VARCHAR}, 
+      #{txtConsultPrice,jdbcType=DECIMAL}, #{famousDoctorLevel,jdbcType=VARCHAR}, #{qrurlStr,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hospital != null">
+        hospital,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="headpic != null">
+        headpic,
+      </if>
+      <if test="yipenghao != null">
+        yipenghao,
+      </if>
+      <if test="tdcodeurl != null">
+        tdcodeurl,
+      </if>
+      <if test="authPhoto != null">
+        auth_photo,
+      </if>
+      <if test="authStatus != null">
+        auth_status,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isshowdetail != null">
+        isshowdetail,
+      </if>
+      <if test="iscybersquatting != null">
+        iscybersquatting,
+      </if>
+      <if test="busyStatus != null">
+        busy_status,
+      </if>
+      <if test="registertime != null">
+        registertime,
+      </if>
+      <if test="answerphone != null">
+        answerphone,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="inviteCode != null">
+        invite_code,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
+      </if>
+      <if test="bankUserName != null">
+        bank_user_name,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="authTime != null">
+        auth_time,
+      </if>
+      <if test="monthlycost != null">
+        monthlycost,
+      </if>
+      <if test="weeklycost != null">
+        weeklycost,
+      </if>
+      <if test="phonecost != null">
+        phonecost,
+      </if>
+      <if test="serveTxtconsult != null">
+        serve_txtconsult,
+      </if>
+      <if test="servePlossign != null">
+        serve_plossign,
+      </if>
+      <if test="serveRegvarvisit != null">
+        serve_regvarvisit,
+      </if>
+      <if test="servePhoneconsult != null">
+        serve_phoneconsult,
+      </if>
+      <if test="authPassTime != null">
+        auth_pass_time,
+      </if>
+      <if test="isfree != null">
+        isfree,
+      </if>
+      <if test="onetimecost != null">
+        onetimecost,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="dailynum != null">
+        dailynum,
+      </if>
+      <if test="zixunnum != null">
+        zixunnum,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="isfamilydoctor != null">
+        isfamilydoctor,
+      </if>
+      <if test="servePrivatedoctors != null">
+        serve_privateDoctors,
+      </if>
+      <if test="onedepartmentId != null">
+        oneDepartment_id,
+      </if>
+      <if test="twodepartmentId != null">
+        twoDepartment_id,
+      </if>
+      <if test="doctorweixingroupId != null">
+        doctorWeixinGroup_id,
+      </if>
+      <if test="isnoshowclient != null">
+        isNoShowClient,
+      </if>
+      <if test="alipayname != null">
+        alipayName,
+      </if>
+      <if test="alipaycardnumber != null">
+        alipayCardNumber,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaname != null">
+        areaName,
+      </if>
+      <if test="hospitalId != null">
+        hospital_id,
+      </if>
+      <if test="trialtype != null">
+        trialType,
+      </if>
+      <if test="trialphone != null">
+        trialPhone,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="bankAddress != null">
+        bank_address,
+      </if>
+      <if test="iscooperation != null">
+        isCooperation,
+      </if>
+      <if test="homeaddress != null">
+        homeAddress,
+      </if>
+      <if test="communicationskills != null">
+        communicationSkills,
+      </if>
+      <if test="personality != null">
+        personality,
+      </if>
+      <if test="professionaldegree != null">
+        professionalDegree,
+      </if>
+      <if test="serviceattitude != null">
+        serviceAttitude,
+      </if>
+      <if test="satisfaction != null">
+        satisfaction,
+      </if>
+      <if test="wechatid != null">
+        weChatID,
+      </if>
+      <if test="isdocregiter != null">
+        isDocRegiter,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="showplatform != null">
+        showPlatform,
+      </if>
+      <if test="practitioners != null">
+        practitioners,
+      </if>
+      <if test="impressiontag != null">
+        impressionTag,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="hospitalizeProductCode != null">
+        hospitalize_product_code,
+      </if>
+      <if test="hospitalizePrice != null">
+        hospitalize_price,
+      </if>
+      <if test="phoneConsultProductCode != null">
+        phone_consult_product_code,
+      </if>
+      <if test="phoneConsultPrice != null">
+        phone_consult_price,
+      </if>
+      <if test="txtConsultProductCode != null">
+        txt_consult_product_code,
+      </if>
+      <if test="txtConsultPrice != null">
+        txt_consult_price,
+      </if>
+      <if test="famousDoctorLevel != null">
+        famous_doctor_level,
+      </if>
+      <if test="qrurlStr != null">
+        qrurl_str,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hospital != null">
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="headpic != null">
+        #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="yipenghao != null">
+        #{yipenghao,jdbcType=INTEGER},
+      </if>
+      <if test="tdcodeurl != null">
+        #{tdcodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhoto != null">
+        #{authPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        #{authStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isshowdetail != null">
+        #{isshowdetail,jdbcType=TINYINT},
+      </if>
+      <if test="iscybersquatting != null">
+        #{iscybersquatting,jdbcType=TINYINT},
+      </if>
+      <if test="busyStatus != null">
+        #{busyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="registertime != null">
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="answerphone != null">
+        #{answerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null">
+        #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthlycost != null">
+        #{monthlycost,jdbcType=DECIMAL},
+      </if>
+      <if test="weeklycost != null">
+        #{weeklycost,jdbcType=DECIMAL},
+      </if>
+      <if test="phonecost != null">
+        #{phonecost,jdbcType=DECIMAL},
+      </if>
+      <if test="serveTxtconsult != null">
+        #{serveTxtconsult,jdbcType=TINYINT},
+      </if>
+      <if test="servePlossign != null">
+        #{servePlossign,jdbcType=TINYINT},
+      </if>
+      <if test="serveRegvarvisit != null">
+        #{serveRegvarvisit,jdbcType=TINYINT},
+      </if>
+      <if test="servePhoneconsult != null">
+        #{servePhoneconsult,jdbcType=TINYINT},
+      </if>
+      <if test="authPassTime != null">
+        #{authPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isfree != null">
+        #{isfree,jdbcType=TINYINT},
+      </if>
+      <if test="onetimecost != null">
+        #{onetimecost,jdbcType=DECIMAL},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="dailynum != null">
+        #{dailynum,jdbcType=INTEGER},
+      </if>
+      <if test="zixunnum != null">
+        #{zixunnum,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="isfamilydoctor != null">
+        #{isfamilydoctor,jdbcType=TINYINT},
+      </if>
+      <if test="servePrivatedoctors != null">
+        #{servePrivatedoctors,jdbcType=TINYINT},
+      </if>
+      <if test="onedepartmentId != null">
+        #{onedepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="twodepartmentId != null">
+        #{twodepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorweixingroupId != null">
+        #{doctorweixingroupId,jdbcType=BIGINT},
+      </if>
+      <if test="isnoshowclient != null">
+        #{isnoshowclient,jdbcType=TINYINT},
+      </if>
+      <if test="alipayname != null">
+        #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaycardnumber != null">
+        #{alipaycardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaname != null">
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null">
+        #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="trialtype != null">
+        #{trialtype,jdbcType=TINYINT},
+      </if>
+      <if test="trialphone != null">
+        #{trialphone,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iscooperation != null">
+        #{iscooperation,jdbcType=TINYINT},
+      </if>
+      <if test="homeaddress != null">
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationskills != null">
+        #{communicationskills,jdbcType=VARCHAR},
+      </if>
+      <if test="personality != null">
+        #{personality,jdbcType=VARCHAR},
+      </if>
+      <if test="professionaldegree != null">
+        #{professionaldegree,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceattitude != null">
+        #{serviceattitude,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null">
+        #{wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="isdocregiter != null">
+        #{isdocregiter,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showplatform != null">
+        #{showplatform,jdbcType=TINYINT},
+      </if>
+      <if test="practitioners != null">
+        #{practitioners,jdbcType=VARCHAR},
+      </if>
+      <if test="impressiontag != null">
+        #{impressiontag,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalizeProductCode != null">
+        #{hospitalizeProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizePrice != null">
+        #{hospitalizePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneConsultProductCode != null">
+        #{phoneConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneConsultPrice != null">
+        #{phoneConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="txtConsultProductCode != null">
+        #{txtConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txtConsultPrice != null">
+        #{txtConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="famousDoctorLevel != null">
+        #{famousDoctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="qrurlStr != null">
+        #{qrurlStr,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    update doctor
+    <set>
+      <if test="hospital != null">
+        hospital = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="headpic != null">
+        headpic = #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="yipenghao != null">
+        yipenghao = #{yipenghao,jdbcType=INTEGER},
+      </if>
+      <if test="tdcodeurl != null">
+        tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhoto != null">
+        auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        auth_status = #{authStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isshowdetail != null">
+        isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      </if>
+      <if test="iscybersquatting != null">
+        iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      </if>
+      <if test="busyStatus != null">
+        busy_status = #{busyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="registertime != null">
+        registertime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="answerphone != null">
+        answerphone = #{answerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null">
+        bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        auth_time = #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthlycost != null">
+        monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      </if>
+      <if test="weeklycost != null">
+        weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      </if>
+      <if test="phonecost != null">
+        phonecost = #{phonecost,jdbcType=DECIMAL},
+      </if>
+      <if test="serveTxtconsult != null">
+        serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      </if>
+      <if test="servePlossign != null">
+        serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      </if>
+      <if test="serveRegvarvisit != null">
+        serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      </if>
+      <if test="servePhoneconsult != null">
+        serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      </if>
+      <if test="authPassTime != null">
+        auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isfree != null">
+        isfree = #{isfree,jdbcType=TINYINT},
+      </if>
+      <if test="onetimecost != null">
+        onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="dailynum != null">
+        dailynum = #{dailynum,jdbcType=INTEGER},
+      </if>
+      <if test="zixunnum != null">
+        zixunnum = #{zixunnum,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        interest = #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="isfamilydoctor != null">
+        isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      </if>
+      <if test="servePrivatedoctors != null">
+        serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      </if>
+      <if test="onedepartmentId != null">
+        oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="twodepartmentId != null">
+        twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorweixingroupId != null">
+        doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      </if>
+      <if test="isnoshowclient != null">
+        isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      </if>
+      <if test="alipayname != null">
+        alipayName = #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaycardnumber != null">
+        alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaname != null">
+        areaName = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null">
+        hospital_id = #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="trialtype != null">
+        trialType = #{trialtype,jdbcType=TINYINT},
+      </if>
+      <if test="trialphone != null">
+        trialPhone = #{trialphone,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iscooperation != null">
+        isCooperation = #{iscooperation,jdbcType=TINYINT},
+      </if>
+      <if test="homeaddress != null">
+        homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationskills != null">
+        communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      </if>
+      <if test="personality != null">
+        personality = #{personality,jdbcType=VARCHAR},
+      </if>
+      <if test="professionaldegree != null">
+        professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceattitude != null">
+        serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null">
+        weChatID = #{wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="isdocregiter != null">
+        isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showplatform != null">
+        showPlatform = #{showplatform,jdbcType=TINYINT},
+      </if>
+      <if test="practitioners != null">
+        practitioners = #{practitioners,jdbcType=VARCHAR},
+      </if>
+      <if test="impressiontag != null">
+        impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalizeProductCode != null">
+        hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizePrice != null">
+        hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneConsultProductCode != null">
+        phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneConsultPrice != null">
+        phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="txtConsultProductCode != null">
+        txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txtConsultPrice != null">
+        txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="famousDoctorLevel != null">
+        famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="qrurlStr != null">
+        qrurl_str = #{qrurlStr,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    update doctor
+    set hospital = #{hospital,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      headpic = #{headpic,jdbcType=VARCHAR},
+      yipenghao = #{yipenghao,jdbcType=INTEGER},
+      tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      busy_status = #{busyStatus,jdbcType=TINYINT},
+      registertime = #{registertime,jdbcType=TIMESTAMP},
+      answerphone = #{answerphone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=TINYINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      phonecost = #{phonecost,jdbcType=DECIMAL},
+      serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      isfree = #{isfree,jdbcType=TINYINT},
+      onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      platform = #{platform,jdbcType=VARCHAR},
+      dailynum = #{dailynum,jdbcType=INTEGER},
+      zixunnum = #{zixunnum,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=VARCHAR},
+      isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      alipayName = #{alipayname,jdbcType=VARCHAR},
+      alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=BIGINT},
+      trialType = #{trialtype,jdbcType=TINYINT},
+      trialPhone = #{trialphone,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      isCooperation = #{iscooperation,jdbcType=TINYINT},
+      homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      personality = #{personality,jdbcType=VARCHAR},
+      professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      weChatID = #{wechatid,jdbcType=VARCHAR},
+      isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      showPlatform = #{showplatform,jdbcType=TINYINT},
+      practitioners = #{practitioners,jdbcType=VARCHAR},
+      impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      qrurl_str = #{qrurlStr,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.summer.tech.mybatis.model.Doctor">
+    update doctor
+    set hospital = #{hospital,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      headpic = #{headpic,jdbcType=VARCHAR},
+      yipenghao = #{yipenghao,jdbcType=INTEGER},
+      tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      busy_status = #{busyStatus,jdbcType=TINYINT},
+      registertime = #{registertime,jdbcType=TIMESTAMP},
+      answerphone = #{answerphone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=TINYINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      phonecost = #{phonecost,jdbcType=DECIMAL},
+      serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      isfree = #{isfree,jdbcType=TINYINT},
+      onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      platform = #{platform,jdbcType=VARCHAR},
+      dailynum = #{dailynum,jdbcType=INTEGER},
+      zixunnum = #{zixunnum,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=VARCHAR},
+      isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      alipayName = #{alipayname,jdbcType=VARCHAR},
+      alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=BIGINT},
+      trialType = #{trialtype,jdbcType=TINYINT},
+      trialPhone = #{trialphone,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      isCooperation = #{iscooperation,jdbcType=TINYINT},
+      homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      personality = #{personality,jdbcType=VARCHAR},
+      professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      weChatID = #{wechatid,jdbcType=VARCHAR},
+      isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      showPlatform = #{showplatform,jdbcType=TINYINT},
+      practitioners = #{practitioners,jdbcType=VARCHAR},
+      impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      qrurl_str = #{qrurlStr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.summer.tech.mybatis.model.Doctor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="hospital" jdbcType="VARCHAR" property="hospital" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+    <result column="headpic" jdbcType="VARCHAR" property="headpic" />
+    <result column="yipenghao" jdbcType="INTEGER" property="yipenghao" />
+    <result column="tdcodeurl" jdbcType="VARCHAR" property="tdcodeurl" />
+    <result column="auth_photo" jdbcType="VARCHAR" property="authPhoto" />
+    <result column="auth_status" jdbcType="TINYINT" property="authStatus" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="isshowdetail" jdbcType="TINYINT" property="isshowdetail" />
+    <result column="iscybersquatting" jdbcType="TINYINT" property="iscybersquatting" />
+    <result column="busy_status" jdbcType="TINYINT" property="busyStatus" />
+    <result column="registertime" jdbcType="TIMESTAMP" property="registertime" />
+    <result column="answerphone" jdbcType="VARCHAR" property="answerphone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="invite_code" jdbcType="VARCHAR" property="inviteCode" />
+    <result column="enabled" jdbcType="TINYINT" property="enabled" />
+    <result column="bank_card_no" jdbcType="VARCHAR" property="bankCardNo" />
+    <result column="bank_user_name" jdbcType="VARCHAR" property="bankUserName" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="auth_time" jdbcType="TIMESTAMP" property="authTime" />
+    <result column="monthlycost" jdbcType="DECIMAL" property="monthlycost" />
+    <result column="weeklycost" jdbcType="DECIMAL" property="weeklycost" />
+    <result column="phonecost" jdbcType="DECIMAL" property="phonecost" />
+    <result column="serve_txtconsult" jdbcType="TINYINT" property="serveTxtconsult" />
+    <result column="serve_plossign" jdbcType="TINYINT" property="servePlossign" />
+    <result column="serve_regvarvisit" jdbcType="TINYINT" property="serveRegvarvisit" />
+    <result column="serve_phoneconsult" jdbcType="TINYINT" property="servePhoneconsult" />
+    <result column="auth_pass_time" jdbcType="TIMESTAMP" property="authPassTime" />
+    <result column="isfree" jdbcType="TINYINT" property="isfree" />
+    <result column="onetimecost" jdbcType="DECIMAL" property="onetimecost" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="dailynum" jdbcType="INTEGER" property="dailynum" />
+    <result column="zixunnum" jdbcType="INTEGER" property="zixunnum" />
+    <result column="interest" jdbcType="VARCHAR" property="interest" />
+    <result column="isfamilydoctor" jdbcType="TINYINT" property="isfamilydoctor" />
+    <result column="serve_privateDoctors" jdbcType="TINYINT" property="servePrivatedoctors" />
+    <result column="oneDepartment_id" jdbcType="BIGINT" property="onedepartmentId" />
+    <result column="twoDepartment_id" jdbcType="BIGINT" property="twodepartmentId" />
+    <result column="doctorWeixinGroup_id" jdbcType="BIGINT" property="doctorweixingroupId" />
+    <result column="isNoShowClient" jdbcType="TINYINT" property="isnoshowclient" />
+    <result column="alipayName" jdbcType="VARCHAR" property="alipayname" />
+    <result column="alipayCardNumber" jdbcType="VARCHAR" property="alipaycardnumber" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaname" />
+    <result column="hospital_id" jdbcType="BIGINT" property="hospitalId" />
+    <result column="trialType" jdbcType="TINYINT" property="trialtype" />
+    <result column="trialPhone" jdbcType="VARCHAR" property="trialphone" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
+    <result column="isCooperation" jdbcType="TINYINT" property="iscooperation" />
+    <result column="homeAddress" jdbcType="VARCHAR" property="homeaddress" />
+    <result column="communicationSkills" jdbcType="VARCHAR" property="communicationskills" />
+    <result column="personality" jdbcType="VARCHAR" property="personality" />
+    <result column="professionalDegree" jdbcType="VARCHAR" property="professionaldegree" />
+    <result column="serviceAttitude" jdbcType="VARCHAR" property="serviceattitude" />
+    <result column="satisfaction" jdbcType="VARCHAR" property="satisfaction" />
+    <result column="weChatID" jdbcType="VARCHAR" property="wechatid" />
+    <result column="isDocRegiter" jdbcType="TINYINT" property="isdocregiter" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="showPlatform" jdbcType="TINYINT" property="showplatform" />
+    <result column="practitioners" jdbcType="VARCHAR" property="practitioners" />
+    <result column="impressionTag" jdbcType="VARCHAR" property="impressiontag" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="hospitalize_product_code" jdbcType="VARCHAR" property="hospitalizeProductCode" />
+    <result column="hospitalize_price" jdbcType="DECIMAL" property="hospitalizePrice" />
+    <result column="phone_consult_product_code" jdbcType="VARCHAR" property="phoneConsultProductCode" />
+    <result column="phone_consult_price" jdbcType="DECIMAL" property="phoneConsultPrice" />
+    <result column="txt_consult_product_code" jdbcType="VARCHAR" property="txtConsultProductCode" />
+    <result column="txt_consult_price" jdbcType="DECIMAL" property="txtConsultPrice" />
+    <result column="famous_doctor_level" jdbcType="VARCHAR" property="famousDoctorLevel" />
+    <result column="qrurl_str" jdbcType="VARCHAR" property="qrurlStr" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, hospital, department, jobtitle, headpic, yipenghao, tdcodeurl, auth_photo, auth_status, 
+    gender, birthday, phone, password, email, isshowdetail, iscybersquatting, busy_status, 
+    registertime, answerphone, name, invite_code, enabled, bank_card_no, bank_user_name, 
+    bank_name, last_login_time, auth_time, monthlycost, weeklycost, phonecost, serve_txtconsult, 
+    serve_plossign, serve_regvarvisit, serve_phoneconsult, auth_pass_time, isfree, onetimecost, 
+    platform, dailynum, zixunnum, interest, isfamilydoctor, serve_privateDoctors, oneDepartment_id, 
+    twoDepartment_id, doctorWeixinGroup_id, isNoShowClient, alipayName, alipayCardNumber, 
+    area_id, areaName, hospital_id, trialType, trialPhone, openid, bank_address, isCooperation, 
+    homeAddress, communicationSkills, personality, professionalDegree, serviceAttitude, 
+    satisfaction, weChatID, isDocRegiter, type, showPlatform, practitioners, impressionTag, 
+    grade, update_time, hospitalize_product_code, hospitalize_price, phone_consult_product_code, 
+    phone_consult_price, txt_consult_product_code, txt_consult_price, famous_doctor_level, 
+    qrurl_str
+  </sql>
+  <sql id="Blob_Column_List">
+    introduction, description, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from doctor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    insert into doctor (id, hospital, department, 
+      jobtitle, headpic, yipenghao, 
+      tdcodeurl, auth_photo, auth_status, 
+      gender, birthday, phone, 
+      password, email, isshowdetail, 
+      iscybersquatting, busy_status, registertime, 
+      answerphone, name, invite_code, 
+      enabled, bank_card_no, bank_user_name, 
+      bank_name, last_login_time, auth_time, 
+      monthlycost, weeklycost, phonecost, 
+      serve_txtconsult, serve_plossign, serve_regvarvisit, 
+      serve_phoneconsult, auth_pass_time, isfree, 
+      onetimecost, platform, dailynum, 
+      zixunnum, interest, isfamilydoctor, 
+      serve_privateDoctors, oneDepartment_id, twoDepartment_id, 
+      doctorWeixinGroup_id, isNoShowClient, alipayName, 
+      alipayCardNumber, area_id, areaName, 
+      hospital_id, trialType, trialPhone, 
+      openid, bank_address, isCooperation, 
+      homeAddress, communicationSkills, personality, 
+      professionalDegree, serviceAttitude, satisfaction, 
+      weChatID, isDocRegiter, type, 
+      showPlatform, practitioners, impressionTag, 
+      grade, update_time, hospitalize_product_code, 
+      hospitalize_price, phone_consult_product_code, 
+      phone_consult_price, txt_consult_product_code, 
+      txt_consult_price, famous_doctor_level, qrurl_str, 
+      introduction, description, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{hospital,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{jobtitle,jdbcType=VARCHAR}, #{headpic,jdbcType=VARCHAR}, #{yipenghao,jdbcType=INTEGER}, 
+      #{tdcodeurl,jdbcType=VARCHAR}, #{authPhoto,jdbcType=VARCHAR}, #{authStatus,jdbcType=TINYINT}, 
+      #{gender,jdbcType=TINYINT}, #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isshowdetail,jdbcType=TINYINT}, 
+      #{iscybersquatting,jdbcType=TINYINT}, #{busyStatus,jdbcType=TINYINT}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{answerphone,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=TINYINT}, #{bankCardNo,jdbcType=VARCHAR}, #{bankUserName,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{authTime,jdbcType=TIMESTAMP}, 
+      #{monthlycost,jdbcType=DECIMAL}, #{weeklycost,jdbcType=DECIMAL}, #{phonecost,jdbcType=DECIMAL}, 
+      #{serveTxtconsult,jdbcType=TINYINT}, #{servePlossign,jdbcType=TINYINT}, #{serveRegvarvisit,jdbcType=TINYINT}, 
+      #{servePhoneconsult,jdbcType=TINYINT}, #{authPassTime,jdbcType=TIMESTAMP}, #{isfree,jdbcType=TINYINT}, 
+      #{onetimecost,jdbcType=DECIMAL}, #{platform,jdbcType=VARCHAR}, #{dailynum,jdbcType=INTEGER}, 
+      #{zixunnum,jdbcType=INTEGER}, #{interest,jdbcType=VARCHAR}, #{isfamilydoctor,jdbcType=TINYINT}, 
+      #{servePrivatedoctors,jdbcType=TINYINT}, #{onedepartmentId,jdbcType=BIGINT}, #{twodepartmentId,jdbcType=BIGINT}, 
+      #{doctorweixingroupId,jdbcType=BIGINT}, #{isnoshowclient,jdbcType=TINYINT}, #{alipayname,jdbcType=VARCHAR}, 
+      #{alipaycardnumber,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT}, #{areaname,jdbcType=VARCHAR}, 
+      #{hospitalId,jdbcType=BIGINT}, #{trialtype,jdbcType=TINYINT}, #{trialphone,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{iscooperation,jdbcType=TINYINT}, 
+      #{homeaddress,jdbcType=VARCHAR}, #{communicationskills,jdbcType=VARCHAR}, #{personality,jdbcType=VARCHAR}, 
+      #{professionaldegree,jdbcType=VARCHAR}, #{serviceattitude,jdbcType=VARCHAR}, #{satisfaction,jdbcType=VARCHAR}, 
+      #{wechatid,jdbcType=VARCHAR}, #{isdocregiter,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, 
+      #{showplatform,jdbcType=TINYINT}, #{practitioners,jdbcType=VARCHAR}, #{impressiontag,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{hospitalizeProductCode,jdbcType=VARCHAR}, 
+      #{hospitalizePrice,jdbcType=DECIMAL}, #{phoneConsultProductCode,jdbcType=VARCHAR}, 
+      #{phoneConsultPrice,jdbcType=DECIMAL}, #{txtConsultProductCode,jdbcType=VARCHAR}, 
+      #{txtConsultPrice,jdbcType=DECIMAL}, #{famousDoctorLevel,jdbcType=VARCHAR}, #{qrurlStr,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="hospital != null">
+        hospital,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+      <if test="headpic != null">
+        headpic,
+      </if>
+      <if test="yipenghao != null">
+        yipenghao,
+      </if>
+      <if test="tdcodeurl != null">
+        tdcodeurl,
+      </if>
+      <if test="authPhoto != null">
+        auth_photo,
+      </if>
+      <if test="authStatus != null">
+        auth_status,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="isshowdetail != null">
+        isshowdetail,
+      </if>
+      <if test="iscybersquatting != null">
+        iscybersquatting,
+      </if>
+      <if test="busyStatus != null">
+        busy_status,
+      </if>
+      <if test="registertime != null">
+        registertime,
+      </if>
+      <if test="answerphone != null">
+        answerphone,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="inviteCode != null">
+        invite_code,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no,
+      </if>
+      <if test="bankUserName != null">
+        bank_user_name,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="authTime != null">
+        auth_time,
+      </if>
+      <if test="monthlycost != null">
+        monthlycost,
+      </if>
+      <if test="weeklycost != null">
+        weeklycost,
+      </if>
+      <if test="phonecost != null">
+        phonecost,
+      </if>
+      <if test="serveTxtconsult != null">
+        serve_txtconsult,
+      </if>
+      <if test="servePlossign != null">
+        serve_plossign,
+      </if>
+      <if test="serveRegvarvisit != null">
+        serve_regvarvisit,
+      </if>
+      <if test="servePhoneconsult != null">
+        serve_phoneconsult,
+      </if>
+      <if test="authPassTime != null">
+        auth_pass_time,
+      </if>
+      <if test="isfree != null">
+        isfree,
+      </if>
+      <if test="onetimecost != null">
+        onetimecost,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="dailynum != null">
+        dailynum,
+      </if>
+      <if test="zixunnum != null">
+        zixunnum,
+      </if>
+      <if test="interest != null">
+        interest,
+      </if>
+      <if test="isfamilydoctor != null">
+        isfamilydoctor,
+      </if>
+      <if test="servePrivatedoctors != null">
+        serve_privateDoctors,
+      </if>
+      <if test="onedepartmentId != null">
+        oneDepartment_id,
+      </if>
+      <if test="twodepartmentId != null">
+        twoDepartment_id,
+      </if>
+      <if test="doctorweixingroupId != null">
+        doctorWeixinGroup_id,
+      </if>
+      <if test="isnoshowclient != null">
+        isNoShowClient,
+      </if>
+      <if test="alipayname != null">
+        alipayName,
+      </if>
+      <if test="alipaycardnumber != null">
+        alipayCardNumber,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaname != null">
+        areaName,
+      </if>
+      <if test="hospitalId != null">
+        hospital_id,
+      </if>
+      <if test="trialtype != null">
+        trialType,
+      </if>
+      <if test="trialphone != null">
+        trialPhone,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="bankAddress != null">
+        bank_address,
+      </if>
+      <if test="iscooperation != null">
+        isCooperation,
+      </if>
+      <if test="homeaddress != null">
+        homeAddress,
+      </if>
+      <if test="communicationskills != null">
+        communicationSkills,
+      </if>
+      <if test="personality != null">
+        personality,
+      </if>
+      <if test="professionaldegree != null">
+        professionalDegree,
+      </if>
+      <if test="serviceattitude != null">
+        serviceAttitude,
+      </if>
+      <if test="satisfaction != null">
+        satisfaction,
+      </if>
+      <if test="wechatid != null">
+        weChatID,
+      </if>
+      <if test="isdocregiter != null">
+        isDocRegiter,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="showplatform != null">
+        showPlatform,
+      </if>
+      <if test="practitioners != null">
+        practitioners,
+      </if>
+      <if test="impressiontag != null">
+        impressionTag,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="hospitalizeProductCode != null">
+        hospitalize_product_code,
+      </if>
+      <if test="hospitalizePrice != null">
+        hospitalize_price,
+      </if>
+      <if test="phoneConsultProductCode != null">
+        phone_consult_product_code,
+      </if>
+      <if test="phoneConsultPrice != null">
+        phone_consult_price,
+      </if>
+      <if test="txtConsultProductCode != null">
+        txt_consult_product_code,
+      </if>
+      <if test="txtConsultPrice != null">
+        txt_consult_price,
+      </if>
+      <if test="famousDoctorLevel != null">
+        famous_doctor_level,
+      </if>
+      <if test="qrurlStr != null">
+        qrurl_str,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hospital != null">
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="headpic != null">
+        #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="yipenghao != null">
+        #{yipenghao,jdbcType=INTEGER},
+      </if>
+      <if test="tdcodeurl != null">
+        #{tdcodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhoto != null">
+        #{authPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        #{authStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isshowdetail != null">
+        #{isshowdetail,jdbcType=TINYINT},
+      </if>
+      <if test="iscybersquatting != null">
+        #{iscybersquatting,jdbcType=TINYINT},
+      </if>
+      <if test="busyStatus != null">
+        #{busyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="registertime != null">
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="answerphone != null">
+        #{answerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="bankCardNo != null">
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null">
+        #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthlycost != null">
+        #{monthlycost,jdbcType=DECIMAL},
+      </if>
+      <if test="weeklycost != null">
+        #{weeklycost,jdbcType=DECIMAL},
+      </if>
+      <if test="phonecost != null">
+        #{phonecost,jdbcType=DECIMAL},
+      </if>
+      <if test="serveTxtconsult != null">
+        #{serveTxtconsult,jdbcType=TINYINT},
+      </if>
+      <if test="servePlossign != null">
+        #{servePlossign,jdbcType=TINYINT},
+      </if>
+      <if test="serveRegvarvisit != null">
+        #{serveRegvarvisit,jdbcType=TINYINT},
+      </if>
+      <if test="servePhoneconsult != null">
+        #{servePhoneconsult,jdbcType=TINYINT},
+      </if>
+      <if test="authPassTime != null">
+        #{authPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isfree != null">
+        #{isfree,jdbcType=TINYINT},
+      </if>
+      <if test="onetimecost != null">
+        #{onetimecost,jdbcType=DECIMAL},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="dailynum != null">
+        #{dailynum,jdbcType=INTEGER},
+      </if>
+      <if test="zixunnum != null">
+        #{zixunnum,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="isfamilydoctor != null">
+        #{isfamilydoctor,jdbcType=TINYINT},
+      </if>
+      <if test="servePrivatedoctors != null">
+        #{servePrivatedoctors,jdbcType=TINYINT},
+      </if>
+      <if test="onedepartmentId != null">
+        #{onedepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="twodepartmentId != null">
+        #{twodepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorweixingroupId != null">
+        #{doctorweixingroupId,jdbcType=BIGINT},
+      </if>
+      <if test="isnoshowclient != null">
+        #{isnoshowclient,jdbcType=TINYINT},
+      </if>
+      <if test="alipayname != null">
+        #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaycardnumber != null">
+        #{alipaycardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaname != null">
+        #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null">
+        #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="trialtype != null">
+        #{trialtype,jdbcType=TINYINT},
+      </if>
+      <if test="trialphone != null">
+        #{trialphone,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iscooperation != null">
+        #{iscooperation,jdbcType=TINYINT},
+      </if>
+      <if test="homeaddress != null">
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationskills != null">
+        #{communicationskills,jdbcType=VARCHAR},
+      </if>
+      <if test="personality != null">
+        #{personality,jdbcType=VARCHAR},
+      </if>
+      <if test="professionaldegree != null">
+        #{professionaldegree,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceattitude != null">
+        #{serviceattitude,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null">
+        #{wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="isdocregiter != null">
+        #{isdocregiter,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showplatform != null">
+        #{showplatform,jdbcType=TINYINT},
+      </if>
+      <if test="practitioners != null">
+        #{practitioners,jdbcType=VARCHAR},
+      </if>
+      <if test="impressiontag != null">
+        #{impressiontag,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalizeProductCode != null">
+        #{hospitalizeProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizePrice != null">
+        #{hospitalizePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneConsultProductCode != null">
+        #{phoneConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneConsultPrice != null">
+        #{phoneConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="txtConsultProductCode != null">
+        #{txtConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txtConsultPrice != null">
+        #{txtConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="famousDoctorLevel != null">
+        #{famousDoctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="qrurlStr != null">
+        #{qrurlStr,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    update doctor
+    <set>
+      <if test="hospital != null">
+        hospital = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="headpic != null">
+        headpic = #{headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="yipenghao != null">
+        yipenghao = #{yipenghao,jdbcType=INTEGER},
+      </if>
+      <if test="tdcodeurl != null">
+        tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      </if>
+      <if test="authPhoto != null">
+        auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null">
+        auth_status = #{authStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isshowdetail != null">
+        isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      </if>
+      <if test="iscybersquatting != null">
+        iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      </if>
+      <if test="busyStatus != null">
+        busy_status = #{busyStatus,jdbcType=TINYINT},
+      </if>
+      <if test="registertime != null">
+        registertime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="answerphone != null">
+        answerphone = #{answerphone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=TINYINT},
+      </if>
+      <if test="bankCardNo != null">
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUserName != null">
+        bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authTime != null">
+        auth_time = #{authTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthlycost != null">
+        monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      </if>
+      <if test="weeklycost != null">
+        weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      </if>
+      <if test="phonecost != null">
+        phonecost = #{phonecost,jdbcType=DECIMAL},
+      </if>
+      <if test="serveTxtconsult != null">
+        serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      </if>
+      <if test="servePlossign != null">
+        serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      </if>
+      <if test="serveRegvarvisit != null">
+        serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      </if>
+      <if test="servePhoneconsult != null">
+        serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      </if>
+      <if test="authPassTime != null">
+        auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isfree != null">
+        isfree = #{isfree,jdbcType=TINYINT},
+      </if>
+      <if test="onetimecost != null">
+        onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="dailynum != null">
+        dailynum = #{dailynum,jdbcType=INTEGER},
+      </if>
+      <if test="zixunnum != null">
+        zixunnum = #{zixunnum,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null">
+        interest = #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="isfamilydoctor != null">
+        isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      </if>
+      <if test="servePrivatedoctors != null">
+        serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      </if>
+      <if test="onedepartmentId != null">
+        oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="twodepartmentId != null">
+        twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      </if>
+      <if test="doctorweixingroupId != null">
+        doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      </if>
+      <if test="isnoshowclient != null">
+        isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      </if>
+      <if test="alipayname != null">
+        alipayName = #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="alipaycardnumber != null">
+        alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaname != null">
+        areaName = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null">
+        hospital_id = #{hospitalId,jdbcType=BIGINT},
+      </if>
+      <if test="trialtype != null">
+        trialType = #{trialtype,jdbcType=TINYINT},
+      </if>
+      <if test="trialphone != null">
+        trialPhone = #{trialphone,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null">
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iscooperation != null">
+        isCooperation = #{iscooperation,jdbcType=TINYINT},
+      </if>
+      <if test="homeaddress != null">
+        homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="communicationskills != null">
+        communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      </if>
+      <if test="personality != null">
+        personality = #{personality,jdbcType=VARCHAR},
+      </if>
+      <if test="professionaldegree != null">
+        professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceattitude != null">
+        serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfaction != null">
+        satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatid != null">
+        weChatID = #{wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="isdocregiter != null">
+        isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="showplatform != null">
+        showPlatform = #{showplatform,jdbcType=TINYINT},
+      </if>
+      <if test="practitioners != null">
+        practitioners = #{practitioners,jdbcType=VARCHAR},
+      </if>
+      <if test="impressiontag != null">
+        impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospitalizeProductCode != null">
+        hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizePrice != null">
+        hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneConsultProductCode != null">
+        phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneConsultPrice != null">
+        phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="txtConsultProductCode != null">
+        txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txtConsultPrice != null">
+        txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="famousDoctorLevel != null">
+        famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="qrurlStr != null">
+        qrurl_str = #{qrurlStr,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.summer.tech.mybatis.model.DoctorWithBLOBs">
+    update doctor
+    set hospital = #{hospital,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      headpic = #{headpic,jdbcType=VARCHAR},
+      yipenghao = #{yipenghao,jdbcType=INTEGER},
+      tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      busy_status = #{busyStatus,jdbcType=TINYINT},
+      registertime = #{registertime,jdbcType=TIMESTAMP},
+      answerphone = #{answerphone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=TINYINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      phonecost = #{phonecost,jdbcType=DECIMAL},
+      serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      isfree = #{isfree,jdbcType=TINYINT},
+      onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      platform = #{platform,jdbcType=VARCHAR},
+      dailynum = #{dailynum,jdbcType=INTEGER},
+      zixunnum = #{zixunnum,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=VARCHAR},
+      isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      alipayName = #{alipayname,jdbcType=VARCHAR},
+      alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=BIGINT},
+      trialType = #{trialtype,jdbcType=TINYINT},
+      trialPhone = #{trialphone,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      isCooperation = #{iscooperation,jdbcType=TINYINT},
+      homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      personality = #{personality,jdbcType=VARCHAR},
+      professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      weChatID = #{wechatid,jdbcType=VARCHAR},
+      isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      showPlatform = #{showplatform,jdbcType=TINYINT},
+      practitioners = #{practitioners,jdbcType=VARCHAR},
+      impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      qrurl_str = #{qrurlStr,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.summer.tech.mybatis.model.Doctor">
+    update doctor
+    set hospital = #{hospital,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      jobtitle = #{jobtitle,jdbcType=VARCHAR},
+      headpic = #{headpic,jdbcType=VARCHAR},
+      yipenghao = #{yipenghao,jdbcType=INTEGER},
+      tdcodeurl = #{tdcodeurl,jdbcType=VARCHAR},
+      auth_photo = #{authPhoto,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      isshowdetail = #{isshowdetail,jdbcType=TINYINT},
+      iscybersquatting = #{iscybersquatting,jdbcType=TINYINT},
+      busy_status = #{busyStatus,jdbcType=TINYINT},
+      registertime = #{registertime,jdbcType=TIMESTAMP},
+      answerphone = #{answerphone,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=TINYINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_user_name = #{bankUserName,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      auth_time = #{authTime,jdbcType=TIMESTAMP},
+      monthlycost = #{monthlycost,jdbcType=DECIMAL},
+      weeklycost = #{weeklycost,jdbcType=DECIMAL},
+      phonecost = #{phonecost,jdbcType=DECIMAL},
+      serve_txtconsult = #{serveTxtconsult,jdbcType=TINYINT},
+      serve_plossign = #{servePlossign,jdbcType=TINYINT},
+      serve_regvarvisit = #{serveRegvarvisit,jdbcType=TINYINT},
+      serve_phoneconsult = #{servePhoneconsult,jdbcType=TINYINT},
+      auth_pass_time = #{authPassTime,jdbcType=TIMESTAMP},
+      isfree = #{isfree,jdbcType=TINYINT},
+      onetimecost = #{onetimecost,jdbcType=DECIMAL},
+      platform = #{platform,jdbcType=VARCHAR},
+      dailynum = #{dailynum,jdbcType=INTEGER},
+      zixunnum = #{zixunnum,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=VARCHAR},
+      isfamilydoctor = #{isfamilydoctor,jdbcType=TINYINT},
+      serve_privateDoctors = #{servePrivatedoctors,jdbcType=TINYINT},
+      oneDepartment_id = #{onedepartmentId,jdbcType=BIGINT},
+      twoDepartment_id = #{twodepartmentId,jdbcType=BIGINT},
+      doctorWeixinGroup_id = #{doctorweixingroupId,jdbcType=BIGINT},
+      isNoShowClient = #{isnoshowclient,jdbcType=TINYINT},
+      alipayName = #{alipayname,jdbcType=VARCHAR},
+      alipayCardNumber = #{alipaycardnumber,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      areaName = #{areaname,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=BIGINT},
+      trialType = #{trialtype,jdbcType=TINYINT},
+      trialPhone = #{trialphone,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      isCooperation = #{iscooperation,jdbcType=TINYINT},
+      homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      communicationSkills = #{communicationskills,jdbcType=VARCHAR},
+      personality = #{personality,jdbcType=VARCHAR},
+      professionalDegree = #{professionaldegree,jdbcType=VARCHAR},
+      serviceAttitude = #{serviceattitude,jdbcType=VARCHAR},
+      satisfaction = #{satisfaction,jdbcType=VARCHAR},
+      weChatID = #{wechatid,jdbcType=VARCHAR},
+      isDocRegiter = #{isdocregiter,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      showPlatform = #{showplatform,jdbcType=TINYINT},
+      practitioners = #{practitioners,jdbcType=VARCHAR},
+      impressionTag = #{impressiontag,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      hospitalize_product_code = #{hospitalizeProductCode,jdbcType=VARCHAR},
+      hospitalize_price = #{hospitalizePrice,jdbcType=DECIMAL},
+      phone_consult_product_code = #{phoneConsultProductCode,jdbcType=VARCHAR},
+      phone_consult_price = #{phoneConsultPrice,jdbcType=DECIMAL},
+      txt_consult_product_code = #{txtConsultProductCode,jdbcType=VARCHAR},
+      txt_consult_price = #{txtConsultPrice,jdbcType=DECIMAL},
+      famous_doctor_level = #{famousDoctorLevel,jdbcType=VARCHAR},
+      qrurl_str = #{qrurlStr,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
