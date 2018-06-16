@@ -1,11 +1,8 @@
 package com.summer.tech.apache.common.beanutils;
 
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -14,7 +11,7 @@ import org.apache.commons.beanutils.locale.converters.DateLocaleConverter;
 import com.summer.tech.ezmorph.Student;
 
 public class BeanutilsTest {
-	
+
 	public void test1() throws Exception {
 		// 先演示一下不用工具时的做法
 		// 1.生成对象
@@ -44,34 +41,7 @@ public class BeanutilsTest {
 		System.out.println(obj);
 	}
 
-	// 约定前提： 请求中的参数名称 需要和javabean的属性名称保持一致！！！！
-	public static <T> T requestToBean(HttpServletRequest request, Class<T> clazz) {
-		// 创建javaBean对象
-		Object obj = null;
-		try {
-			obj = clazz.newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
 
-		// 得到请求中的每个参数
-		Enumeration<String> enu = request.getParameterNames();
-		while (enu.hasMoreElements()) {
-			// 获得参数名
-			String name = enu.nextElement();
-			// 获得参数值
-			String value = request.getParameter(name);
-			// 然后把参数拷贝到javaBean对象中
-			try {
-				BeanUtils.setProperty(obj, name, value);
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
-		}
-		return (T) obj;
-	}
 
 	public void test2() throws Exception {
 		// 1.生成对象

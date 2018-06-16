@@ -14,7 +14,7 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-	<!--
+
 	<dependency>
 	    <groupId>org.apache.axis2</groupId>
 	    <artifactId>axis2-jaxws</artifactId>
@@ -26,6 +26,7 @@
 	    <artifactId>axis</artifactId>
 	    <version>1.4</version>
 	</dependency>
+	<!--
 	<dependency>
 	    <groupId>org.glassfish.jersey</groupId>
 	    <artifactId>jax-rs-ri</artifactId>
@@ -74,7 +75,7 @@
 		<artifactId>log4j</artifactId>
 		<version>1.2.17</version>
 	</dependency>
-	
+
   </dependencies>
   <build>
     <finalName>tech-jaxws</finalName>

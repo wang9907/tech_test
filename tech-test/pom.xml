@@ -57,7 +57,6 @@
     </dependency>
 
     <!-- apache common -->
-    <!-- https://mvnrepository.com/artifact/commons-pool/commons-pool -->
 	<dependency>
 	    <groupId>commons-pool</groupId>
 	    <artifactId>commons-pool</artifactId>
@@ -70,25 +69,21 @@
 	    <artifactId>ezmorph</artifactId>
 	    <version>1.0.6</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
 	<dependency>
 	    <groupId>commons-dbutils</groupId>
 	    <artifactId>commons-dbutils</artifactId>
 	    <version>1.7</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 	<dependency>
 	    <groupId>commons-dbcp</groupId>
 	    <artifactId>commons-dbcp</artifactId>
 	    <version>1.4</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 	<dependency>
 	    <groupId>commons-io</groupId>
 	    <artifactId>commons-io</artifactId>
 	    <version>2.6</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 	<dependency>
 	    <groupId>commons-fileupload</groupId>
 	    <artifactId>commons-fileupload</artifactId>
@@ -115,38 +110,11 @@
 	    <version>2.10.2</version>
 	</dependency>
 
-	<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
-	<dependency>
-	    <groupId>org.elasticsearch</groupId>
-	    <artifactId>elasticsearch</artifactId>
-	    <version>6.1.2</version>
-	</dependency>
-
-	<dependency>
-       <groupId>org.elasticsearch.client</groupId>
-       <artifactId>transport</artifactId>
-       <version>6.1.2</version>
-    </dependency>
-
     <dependency>
        <groupId>mysql</groupId>
        <artifactId>mysql-connector-java</artifactId>
        <version>5.1.41</version>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-jaxws -->
-	<dependency>
-	    <groupId>org.apache.axis2</groupId>
-	    <artifactId>axis2-jaxws</artifactId>
-	    <version>1.7.7</version>
-	</dependency>
-
- 	<!-- https://mvnrepository.com/artifact/axis/axis -->
-	<dependency>
-	    <groupId>axis</groupId>
-	    <artifactId>axis</artifactId>
-	    <version>1.4</version>
-	</dependency>
 
 	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
 	<dependency>
@@ -168,7 +136,7 @@
 	    <artifactId>httpclient</artifactId>
 	    <version>4.5.5</version>
 	</dependency>
-	
+
 	<dependency>
 	  <groupId>org.mybatis</groupId>
 	  <artifactId>mybatis</artifactId>
@@ -177,5 +145,17 @@
   </dependencies>
   <build>
     <finalName>tech-test</finalName>
+    <plugins>
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>2.3.2</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				<encoding>utf8</encoding>
+			</configuration>
+    	</plugin>
+    </plugins>
   </build>
 </project>
