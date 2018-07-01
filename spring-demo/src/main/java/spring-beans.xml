@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<bean id="helloBean" class="com.summer.tech.spring.di.HelloBean">
+		<property name="hello" value="Hello! Child Bean." />
+	</bean>
+
+	<bean id="dateBean" name="#date" class="java.util.Date" />
+
+	<bean id="hd1" class="com.summer.tech.spring.di.HelloDate">
+		<property name="hb">
+			<ref bean="helloBeanParent" />
+		</property>
+		<property name="date">
+			<ref bean="#date" />
+			<!--<ref bean="dateBean"/> -->
+		</property>
+	</bean>
+
+
+	<bean id="hd2" class="com.summer.tech.spring.di.HelloDate">
+		<property name="hb">
+			<ref bean="helloBean" />
+		</property>
+		<property name="date">
+			<ref bean="dateBean" />
+		</property>
+	</bean>
+
+	<bean id="hd3" class="com.summer.tech.spring.di.HelloDate">
+		<property name="hb">
+			<ref parent="helloBean" />
+		</property>
+		<property name="date">
+			<bean class="java.util.Date" />
+		</property>
+	</bean>
+</beans>
