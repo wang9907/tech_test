@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<bean id="prototypePrinter" class="com.summer.tech.spring.di.methodinject.Printer"
+		scope="prototype" />
+
+	<bean id="singletonPrinter" class="com.summer.tech.spring.di.methodinject.Printer"
+		scope="singleton" />
+
+	<bean id="helloApi1" class="com.summer.tech.spring.di.methodinject.HelloImpl5"
+		scope="singleton">
+		<property name="printer" ref="prototypePrinter" />
+		<lookup-method name="createPrototypePrinter" bean="prototypePrinter" />
+		<lookup-method name="createSingletonPrinter" bean="singletonPrinter" />
+	</bean>
+
+	<bean id="helloApi2" class="com.summer.tech.spring.di.methodinject.HelloImpl5"
+		scope="prototype">
+		<property name="printer" ref="prototypePrinter" />
+		<lookup-method name="createPrototypePrinter" bean="prototypePrinter" />
+		<lookup-method name="createSingletonPrinter" bean="singletonPrinter" />
+	</bean>
+
+	<bean id="replacer" class="com.summer.tech.spring.di.methodinject.PrinterReplacer" />
+	<bean id="printer" class="com.summer.tech.spring.di.methodinject.Printer">
+		<replaced-method name="print" replacer="replacer">
+			<arg-type>java.lang.String</arg-type>
+		</replaced-method>
+	</bean>
+</beans>
