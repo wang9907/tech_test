@@ -9,9 +9,9 @@ public class AopTest {
      * @param args
      */
     public static void main(String[] args) {
-        ApplicationContext ctx =  new ClassPathXmlApplicationContext("spring-aop.xml");  
-        IHelloWorldService helloworldService =  ctx.getBean("helloService", IHelloWorldService.class);  
-        helloworldService.sayHello();  
+        ApplicationContext ctx =  new ClassPathXmlApplicationContext("spring-aop.xml");
+        IHelloWorldService helloworldService =  ctx.getBean("helloService", IHelloWorldService.class);
+        helloworldService.sayHello("ddd");
 
     }
 
