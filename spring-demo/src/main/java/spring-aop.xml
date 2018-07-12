@@ -26,8 +26,10 @@
 	</aop:config>
 	-->
 	<aop:aspectj-autoproxy />
+	<bean id="aspect"  class="com.summer.tech.spring.aop.HelloWorldAspectAnnotionArg"/>
+
 	<bean id="helloService" class="com.summer.tech.spring.aop.HelloWorldService" />
 
-  	<bean id="aspect"  class="com.summer.tech.spring.aop.HelloWorldAspect2"/>
+
 
 </beans>

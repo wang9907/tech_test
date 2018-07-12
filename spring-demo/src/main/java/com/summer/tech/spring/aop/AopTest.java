@@ -7,11 +7,12 @@ public class AopTest {
 
     /**
      * @param args
+     * @throws Exception
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ApplicationContext ctx =  new ClassPathXmlApplicationContext("spring-aop.xml");
         IHelloWorldService helloworldService =  ctx.getBean("helloService", IHelloWorldService.class);
-        helloworldService.sayHello("ddd");
+        helloworldService.toHello("hhh");
 
     }
 
