@@ -13,6 +13,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
        >
+    <!-- 基于配置文件实现AOP -->
     <!--
     <bean id="helloService" class="com.summer.tech.spring.aop.HelloWorldService" />
 	<bean id="helloAspect" class="com.summer.tech.spring.aop.HelloWorldAroundAspect" />
@@ -25,11 +26,12 @@
 		</aop:aspect>
 	</aop:config>
 	-->
+
+	<!-- 基于注解实现AOP -->
 	<aop:aspectj-autoproxy />
 	<bean id="aspect"  class="com.summer.tech.spring.aop.HelloWorldAspectAnnotionArg"/>
 
 	<bean id="helloService" class="com.summer.tech.spring.aop.HelloWorldService" />
-
 
 
 </beans>

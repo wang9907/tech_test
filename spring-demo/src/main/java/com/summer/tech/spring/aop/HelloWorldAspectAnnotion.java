@@ -46,6 +46,7 @@ public class HelloWorldAspectAnnotion {
 			throws Throwable {
 		System.out.println("===========around before advice");
 		Object retVal = pjp.proceed(new Object[] { "replace" });
+		System.out.println(pjp.getStaticPart().toLongString());
 		System.out.println(Arrays.toString(pjp.getArgs()));
 		System.out.println("===========around after advice");
 		return retVal;
