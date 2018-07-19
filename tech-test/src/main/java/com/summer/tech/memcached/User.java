@@ -7,6 +7,11 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -372274003834027815L;
 
 	String userId;
+	String name;
+
+	public User() {
+		super();
+	}
 
 	public User(String userId) {
 		super();
@@ -28,4 +33,13 @@ public class User implements Serializable {
 		sb.append("userId=" + this.userId);
 		return sb.toString();
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

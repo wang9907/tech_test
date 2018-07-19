@@ -25,4 +25,29 @@
          timeToLiveSeconds="5"
          overflowToDisk="false"
          memoryStoreEvictionPolicy="LRU"/>
+
+   <cache name="userCache" maxBytesLocalHeap="50M" >
+      <searchable allowDynamicIndexing="true" >
+         <searchAttribute name="name" expression="value.getName()" />
+      </searchable>
+   </cache>
+
+   <cache name="searchableCache" maxBytesLocalHeap="100M">
+      <searchable keys="false" values="false">
+         <searchAttribute name="hitCount" expression="element.getHitCount()"/>
+      </searchable>
+   </cache>
+
+  <!--
+  <cache name="userCache" maxBytesLocalHeap="50M">
+      <searchable>
+         <searchAttribute name="name" expression="value.getName()"/>
+         <searchAttribute name="age"/>
+         <searchAttribute name="unitNo" expression="value.unit.unitNo"/>
+         <searchAttribute name="unitName" expression="value.unit.getUnitName()"/>
+         <searchAttribute name="mobile" expression="value.getMobile()"/>
+         <searchAttribute name="hitCount" expression="element.getHitCount()"/>
+      </searchable>
+   </cache>
+    -->
 </ehcache>
