@@ -44,8 +44,8 @@ public class CacheManagerTest {
 	public void dynamicExtractor() {
 		CacheManager cacheManager = CacheManager.create();
 		Cache userCache = cacheManager.getCache("userCache");
-		userCache.registerDynamicAttributesExtractor(
-				new DynamicAttributesExtractor() {
+		userCache
+				.registerDynamicAttributesExtractor(new DynamicAttributesExtractor() {
 
 					@Override
 					public Map<String, Object> attributesFor(Element element) {
@@ -210,4 +210,18 @@ public class CacheManagerTest {
 		results.discard();
 	}
 
+	@Test
+	public void testConrrent() {
+		CacheManager cacheManager = CacheManager.create();
+		cacheManager.addCache("test");
+		Cache cache = cacheManager.getCache("test");
+		final String key = "abc";
+		cache.acquireWriteLockOnKey(key);
+		try {
+			cache.put(new Element(key, "123"));
+		} finally {
+			System.out.println(cache.get(key));
+			cache.releaseWriteLockOnKey(key);
+		}
+	}
 }
