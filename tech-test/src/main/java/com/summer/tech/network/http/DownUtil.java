@@ -10,18 +10,18 @@ import java.util.concurrent.Executors;
 
 public class DownUtil {
 
-	//ÏÂÔØ×ÊÔ´Â·¾¶
+	//ä¸‹è½½èµ„æºè·¯å¾„
 	private String path;
 	private String targetFile;
-	//Ïß³ÌÊıÁ¿
+	//çº¿ç¨‹æ•°é‡
 	private int threadNum;
-	// ÏÂÔØÏß³Ì¶ÔÏó
+	// ä¸‹è½½çº¿ç¨‹å¯¹è±¡
 	private DownThread[] threads;
-	// ÏÂÔØÎÄ¼ş×Ü´óĞ¡
+	// ä¸‹è½½æ–‡ä»¶æ€»å¤§å°
 	private int fileSize;
-	//¶¨ÒåÒ»¸öÏß³Ì³Ø£¬ÔÚ¹¹Ôìº¯ÊıÖĞ³õÊ¼»¯³É¾ßÌåÀàĞÍµÄÏß³Ì³Ø
+	//å®šä¹‰ä¸€ä¸ªçº¿ç¨‹æ± ï¼Œåœ¨æ„é€ å‡½æ•°ä¸­åˆå§‹åŒ–æˆå…·ä½“ç±»å‹çš„çº¿ç¨‹æ± 
 	ExecutorService pool;
-	
+
 	public DownUtil(String path, String targetFile, int threadNum) {
         this.path = path;
         this.targetFile = targetFile;
@@ -29,7 +29,7 @@ public class DownUtil {
         this.threads = new DownThread[threadNum];
         this.pool = Executors.newFixedThreadPool(threadNum);
     }
-	
+
 	public void download() throws IOException{
 		URL url = new URL(path);
 		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -37,52 +37,52 @@ public class DownUtil {
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("accept", "*/*");
 		conn.setRequestProperty("Connection", "Keep-Alive");
-		//µÃµ½ÎÄ¼ş´óĞ¡
+		//å¾—åˆ°æ–‡ä»¶å¤§å°
 		fileSize = conn.getContentLength();
 		conn.disconnect();
-		
-		//Ã¿¸öÏß³ÌÒªÏÂÔØµÄÎÄ¼ş²¿·ÖµÄ´óĞ¡
+
+		//æ¯ä¸ªçº¿ç¨‹è¦ä¸‹è½½çš„æ–‡ä»¶éƒ¨åˆ†çš„å¤§å°
 		int currentPartSize = fileSize/threadNum+1;
 		RandomAccessFile file = new RandomAccessFile(targetFile,"rw");
 		file.setLength(fileSize);
 		file.close();
-		
+
 		for(int i=0;i<threadNum;i++){
-			//¼ÆËãÃ¿¸öÏß³ÌµÄ¿ªÊ¼Î»ÖÃ
+			//è®¡ç®—æ¯ä¸ªçº¿ç¨‹çš„å¼€å§‹ä½ç½®
 			int startPos = 1*currentPartSize;
-			//Ã¿¸öÏß³ÌÊ¹ÓÃÒ»¸öRandomAccessFile½øĞĞÏÂÔØ
+			//æ¯ä¸ªçº¿ç¨‹ä½¿ç”¨ä¸€ä¸ªRandomAccessFileè¿›è¡Œä¸‹è½½
 			RandomAccessFile currentPart = new RandomAccessFile(targetFile, "rw");
-			//¶¨Î»¸ÃÏß³ÌÏÂÔØÎ»ÖÃ
+			//å®šä½è¯¥çº¿ç¨‹ä¸‹è½½ä½ç½®
 			currentPart.seek(startPos);
 			threads[i]= new DownThread(startPos, currentPartSize, currentPart);
 			pool.submit(threads[i]);
 		}
 		pool.shutdown();
 	}
-	
-	//»ñÈ¡ÏÂÔØµÄÍê³É°Ù·Ö±È
+
+	//è·å–ä¸‹è½½çš„å®Œæˆç™¾åˆ†æ¯”
     public double getCompleteRate() {
-        //Í³¼Æ¶à¸öÏß³ÌÒÑ¾­ÏÂÔØµÄ×Ü´óĞ¡
+        //ç»Ÿè®¡å¤šä¸ªçº¿ç¨‹å·²ç»ä¸‹è½½çš„æ€»å¤§å°
         int sumSize = 0;
         for (int i = 0; i< threadNum; i++) {
             sumSize += threads[i].length;
         }
         return sumSize * 1.0 / fileSize ;
     }
-    
+
     private class DownThread implements Runnable{
     	private int startPos;
     	private int currentPartSize;
     	private RandomAccessFile currentPart;
     	public int length;
-    	
+
     	public DownThread(int startPos, int currentPartSize,
                 RandomAccessFile currentPart) {
             this.startPos = startPos;
             this.currentPartSize = currentPartSize;
             this.currentPart = currentPart;
         }
-    	
+
 		public void run() {
 			try {
 				URL url = new URL(path);
@@ -90,16 +90,16 @@ public class DownUtil {
 	            conn.setConnectTimeout(5*1000);
 	            conn.setRequestMethod("GET");
 	            conn.setRequestProperty("accept", "*/*");
-	            
+
 	            conn.setRequestProperty("Charset", "UTF-8");
                 conn.setRequestProperty("Connection", "Keep-Alive");
                 InputStream inStream = conn.getInputStream();
-                
-              //Ìø¹ıstartPosÖ®Ç°µÄÄÚÈİ
+
+              //è·³è¿‡startPosä¹‹å‰çš„å†…å®¹
                 inStream.skip(this.startPos);
                 byte[] buffer = new byte[1024];
                 int hasRead = 0;
-             // ¶ÁÈ¡ÍøÂçÊı¾İ£¬Ğ´Èë±¾µØÎÄ¼ş
+             // è¯»å–ç½‘ç»œæ•°æ®ï¼Œå†™å…¥æœ¬åœ°æ–‡ä»¶
                 while (length < currentPartSize && (hasRead = inStream.read(buffer)) != -1) {
                     currentPart.write(buffer, 0 ,hasRead);
                     length += hasRead;
@@ -109,8 +109,8 @@ public class DownUtil {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-            
+
 		}
-    	
+
     }
-}	
+}

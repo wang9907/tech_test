@@ -4,19 +4,19 @@ import java.io.IOException;
 
 public class MultiThreadDown {
     public static void main(String[] args) throws IOException, InterruptedException {
-        // ≥ı ºªØDownUtil
+        // ÂàùÂßãÂåñDownUtil
         final DownUtil downUtil = new DownUtil(
                 "http://sw.bos.baidu.com/sw-search-sp/software/7d662d80a3d85/npp_7.2_Installer.exe",
                 "notepad.exe",4);
-        //ø™ ºœ¬‘ÿ
+        //ÂºÄÂßã‰∏ãËΩΩ
         downUtil.download();
         Thread monitor =  new Thread(new Runnable(){
 
             @Override
             public void run() {
                 while(downUtil.getCompleteRate() <= 1) {
-                    //√ø∏Ù1√Î≤Èø¥“ª¥ŒÕÍ≥…Ω¯∂»
-                    System.out.println("“—ÕÍ≥…£∫"+downUtil.getCompleteRate());
+                    //ÊØèÈöî1ÁßíÊü•Áúã‰∏ÄÊ¨°ÂÆåÊàêËøõÂ∫¶
+                    System.out.println("Â∑≤ÂÆåÊàêÔºö"+downUtil.getCompleteRate());
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -25,10 +25,10 @@ public class MultiThreadDown {
                     }
                 }
             }
-            
+
         });
         monitor.start();
         monitor.join();
-        System.out.println("œ¬‘ÿÕÍ≥…");
+        System.out.println("‰∏ãËΩΩÂÆåÊàê");
     }
 }
