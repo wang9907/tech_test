@@ -10,7 +10,7 @@ public class ServerThread extends Thread{
     private Socket socket;
     BufferedReader br = null;
     PrintStream ps = null;
-    
+
     public ServerThread(Socket socket) {
         this.socket = socket;
     }
@@ -18,43 +18,43 @@ public class ServerThread extends Thread{
     public void run() {
         try {
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //Ò»¸ö¿Í»§¶ËµÄÊä³öÁ÷¶ÔÏó
+            //ä¸€ä¸ªå®¢æˆ·ç«¯çš„è¾“å‡ºæµå¯¹è±¡
             ps = new PrintStream(socket.getOutputStream());
             String line = null;
             while((line = br.readLine()) != null) {
-                //Èç¹ûÏûÏ¢ÒÔChatProtocol.USER_ROND¿ªÊ¼£¬²¢ÒÔÆä½áÊø
-                //Ôò¿ÉÒÔÈ·¶¨¶Áµ½µÄÊÇÓÃ»§µÇÂ¼µÄÓÃ»§Ãû
+                //å¦‚æœæ¶ˆæ¯ä»¥ChatProtocol.USER_RONDå¼€å§‹ï¼Œå¹¶ä»¥å…¶ç»“æŸ
+                //åˆ™å¯ä»¥ç¡®å®šè¯»åˆ°çš„æ˜¯ç”¨æˆ·ç™»å½•çš„ç”¨æˆ·å
                 if(line.startsWith(ChatProtocol.USER_ROND) &&
                         line.endsWith(ChatProtocol.USER_ROND)) {
                     String userName = getRealMsg(line);
-                    //ÓÃ»§Ãû²»ÔÊĞíÖØ¸´
+                    //ç”¨æˆ·åä¸å…è®¸é‡å¤
                     if(Server.clients.map.containsKey(userName)) {
-                        System.out.println("ÓÃ»§ÃûÖØ¸´");
+                        System.out.println("ç”¨æˆ·åé‡å¤");
                         ps.println(ChatProtocol.NAME_REP);
                     } else {
-                        System.out.println("["+userName+"] ×¢²á³É¹¦£¬Äã¿ÉÒÔ¿ªÊ¼ÁÄÌìÁË£¡");
+                        System.out.println("["+userName+"] æ³¨å†ŒæˆåŠŸï¼Œä½ å¯ä»¥å¼€å§‹èŠå¤©äº†ï¼");
                         ps.println(ChatProtocol.LOGIN_SUCCESS);
-                        //½«ÓÃ»§ÃûºÍÊä³öÁ÷¶ÔÏó×é³ÉµÄ¼üÖµ¹ØÁª¶Ô´æÈëÇ°Ãæ¾­¹ı¸ÄÔìµÄmap
+                        //å°†ç”¨æˆ·åå’Œè¾“å‡ºæµå¯¹è±¡ç»„æˆçš„é”®å€¼å…³è”å¯¹å­˜å…¥å‰é¢ç»è¿‡æ”¹é€ çš„map
                         Server.clients.map.put(userName, ps);
                     }
-                } //Èç¹ûÏûÏ¢ÒÔChatProtocol.PRIVATE_ROND¿ªÍ·²¢ÒÔChatProtocol.PRIVATE_ROND½áÎ²
-                //Ôò¿ÉÒÔÈ·¶¨ÊÇË½ÁÄĞÅÏ¢
-                else if (line.startsWith(ChatProtocol.PRIVATE_ROND ) && 
+                } //å¦‚æœæ¶ˆæ¯ä»¥ChatProtocol.PRIVATE_RONDå¼€å¤´å¹¶ä»¥ChatProtocol.PRIVATE_RONDç»“å°¾
+                //åˆ™å¯ä»¥ç¡®å®šæ˜¯ç§èŠä¿¡æ¯
+                else if (line.startsWith(ChatProtocol.PRIVATE_ROND ) &&
                         line.endsWith(ChatProtocol.PRIVATE_ROND)) {
                     String userAndMsg = getRealMsg(line);
-                    
-                    //ÒÔSPILT_SIGN·Ö¸î×Ö·û´®£¬Ç°°ëÊÇÓÃ»§Ãû£¬ºó°ëÊÇÁÄÌìĞÅÏ¢
+
+                    //ä»¥SPILT_SIGNåˆ†å‰²å­—ç¬¦ä¸²ï¼Œå‰åŠæ˜¯ç”¨æˆ·åï¼ŒååŠæ˜¯èŠå¤©ä¿¡æ¯
                     String user = userAndMsg.split(ChatProtocol.SPLIT_SIGN)[0];
                     String msg = userAndMsg.split(ChatProtocol.SPLIT_SIGN)[1];
-                    //¸ù¾İÓÃ»§ÃûÔÚmapÖĞÕÒ³öÊä³öÁ÷¶ÔÏó£¬½øĞĞË½ÁÄĞÅÏ¢·¢ËÍ
-                    Server.clients.map.get(user).println("[Ë½ÁÄĞÅÏ¢] [À´×Ô "+Server.clients.getKeyByValue(ps)+"] : " + msg);
-                    
+                    //æ ¹æ®ç”¨æˆ·ååœ¨mapä¸­æ‰¾å‡ºè¾“å‡ºæµå¯¹è±¡ï¼Œè¿›è¡Œç§èŠä¿¡æ¯å‘é€
+                    Server.clients.map.get(user).println("[ç§èŠä¿¡æ¯] [æ¥è‡ª "+Server.clients.getKeyByValue(ps)+"] : " + msg);
+
                 }
-                // ÈºÁÄĞÅÏ¢£¬¹ã²¥ÏûÏ¢
+                // ç¾¤èŠä¿¡æ¯ï¼Œå¹¿æ’­æ¶ˆæ¯
                 else {
                     String msg = getRealMsg(line);
                     for(PrintStream clientPs :  Server.clients.valueSet()) {
-                        clientPs.println("[Èº·¢ĞÅÏ¢] [À´×Ô "+Server.clients.getKeyByValue(ps)+"] : " + msg);
+                        clientPs.println("[ç¾¤å‘ä¿¡æ¯] [æ¥è‡ª "+Server.clients.getKeyByValue(ps)+"] : " + msg);
                     }
                 }
             }
@@ -65,12 +65,12 @@ public class ServerThread extends Thread{
             try {
                 if (br != null) {
                     br.close();
-                } 
-                
+                }
+
                 if (ps != null) {
                     ps.close();
                 }
-                
+
                 if (socket != null) {
                     socket.close();
                 }
