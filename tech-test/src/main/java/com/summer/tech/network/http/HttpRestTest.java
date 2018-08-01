@@ -19,11 +19,11 @@ public class HttpRestTest {
 		try {
 			URL resultUrl = new URL(urlNameString);
 			URLConnection connection = resultUrl.openConnection();
-			// ÉèÖÃÇëÇóÍ·ĞÅÏ¢
+			// è®¾ç½®è¯·æ±‚å¤´ä¿¡æ¯
 			connection.setRequestProperty("accept", "*/");
 			connection.setRequestProperty("connection", "KeepAlive");
 			connection.connect();
-			// »ñÈ¡ÏìÓ¦Í·
+			// è·å–å“åº”å¤´
 			Map<String, List<String>> map = connection.getHeaderFields();
 			for (String key : map.keySet()) {
 				System.out.println(key + "--->" + map.get(key));
@@ -57,10 +57,10 @@ public class HttpRestTest {
 		try {
 			URL resultUrl = new URL(urlNameString);
 			URLConnection conn = resultUrl.openConnection();
-			// ÉèÖÃÇëÇóÊôĞÔ
+			// è®¾ç½®è¯·æ±‚å±æ€§
 			conn.setRequestProperty("accept", "*");
 			conn.setRequestProperty("connection", "Keep-Alive");
-			// ·¢ËÍpostÇëÇó±ØĞëÉèÖÃÏÂÃæÁ½ĞĞ
+			// å‘é€postè¯·æ±‚å¿…é¡»è®¾ç½®ä¸‹é¢ä¸¤è¡Œ
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
 			out = new PrintWriter(conn.getOutputStream());
@@ -89,7 +89,7 @@ public class HttpRestTest {
 		}
 		return result;
 	}
-	
+
 	public static void main(String[] args) {
 		String get = HttpRestTest.sendGet("http://www.baidu.com/", "");
 		System.out.println(get);

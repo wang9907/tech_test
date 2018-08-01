@@ -224,4 +224,19 @@ public class CacheManagerTest {
 			cache.releaseWriteLockOnKey(key);
 		}
 	}
+
+	@Test
+	public void testLock() {
+		CacheManager cacheManager = CacheManager.create();
+		cacheManager.addCache("test");
+		Cache cache = cacheManager.getCache("test");
+		final String key = "abc";
+		cache.acquireWriteLockOnKey(key);
+		try {
+			cache.put(new Element(key, "123"));
+		} finally {
+			System.out.println(cache.get(key));
+			cache.releaseWriteLockOnKey(key);
+		}
+	}
 }
