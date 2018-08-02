@@ -22,15 +22,16 @@ public class ScriptEngineDemo {
 	}
 	public static void main(String[] args) throws Exception {
 		ScriptEngineDemo demo = new ScriptEngineDemo();
-		// demo.greet();
-		// demo.useDefaultBinding();
-		// demo.useCustomeBinding();
-		// demo.scriptToFile();
+		 //demo.greet();
+		 //demo.useDefaultBinding();
+		 //demo.useCustomeBinding();
+		 //demo.scriptToFile();
 		// demo.scriptContextAttribute();
 		//demo.scriptContextBindings();
+		 demo.run("print('Hello')");
 		//demo.invokeFunction();
 		//demo.invokeMethod();
-		demo.useInterface();
+		//demo.useInterface();
 	}
 
 	public void greet() throws ScriptException {
@@ -39,7 +40,7 @@ public class ScriptEngineDemo {
 		if (engine == null) {
 			throw new RuntimeException("找不到Javascript语言引擎");
 		}
-		engine.eval("println('Hello world!');");
+		engine.eval("print('Hello world!');");
 	}
 
 	public ScriptEngine getJavaScriptEngine() {
@@ -55,7 +56,7 @@ public class ScriptEngineDemo {
 		ScriptEngine engine = getJavaScriptEngine();
 		engine.put("name", "Alex");
 		engine.eval("var message='Hello,'+name;");
-		engine.eval("println(message)");
+		engine.eval("print(message)");
 		Object obj = engine.get("message");
 		System.out.println(obj);
 	}
@@ -64,7 +65,7 @@ public class ScriptEngineDemo {
 		ScriptEngine engine = getJavaScriptEngine();
 		Bindings bindings = new SimpleBindings();
 		bindings.put("hobby", "playing games");
-		engine.eval("println('I like '+hobby);", bindings);
+		engine.eval("print('I like '+hobby);", bindings);
 	}
 
 	// 输出文件
@@ -72,7 +73,7 @@ public class ScriptEngineDemo {
 		ScriptEngine engine = getJavaScriptEngine();
 		ScriptContext context = engine.getContext();
 		context.setWriter(new FileWriter("output.txt"));
-		engine.eval("println('Hello World');");
+		engine.eval("print('Hello World');");
 	}
 
 	// 自定义属性
@@ -94,7 +95,7 @@ public class ScriptEngineDemo {
 		Bindings bindings2 = engine.createBindings();
 		bindings2.put("name", "Bod");
 		context.setBindings(bindings2, ScriptContext.ENGINE_SCOPE);
-		engine.eval("println(name);");
+		engine.eval("print(name);");
 	}
 
 	// 脚本编译例子
@@ -119,7 +120,7 @@ public class ScriptEngineDemo {
 	//java调用脚本中顶层方法
 	public void invokeFunction() throws ScriptException, NoSuchMethodException{
 		ScriptEngine engine = getJavaScriptEngine();
-		String scriptText = "function greet(name){println('Hello ,'+name);}";
+		String scriptText = "function greet(name){print('Hello ,'+name);}";
 		engine.eval(scriptText);
 		Invocable invocable = (Invocable)engine;
 		invocable.invokeFunction("greet", "Alex");
