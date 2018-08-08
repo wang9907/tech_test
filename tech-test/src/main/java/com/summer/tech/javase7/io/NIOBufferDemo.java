@@ -20,6 +20,7 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.Channels;
 import java.nio.channels.CompletionHandler;
 import java.nio.channels.FileChannel;
+import java.nio.channels.NetworkChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -60,16 +61,16 @@ public class NIOBufferDemo {
 		// demo.compact();
 		// demo.viewBuffer();
 		// demo.openAndWrite();
-		// demo.readWriteAbsolute();
-		// demo.loadWebPage("http://www.baidu.com");
+		//demo.readWriteAbsolute();
+		 //demo.loadWebPage("http://www.baidu.com");
 		// demo.mapFile();
-		// demo.loadWebPageUseSocket();
+		 demo.loadWebPageUseSocket();
 		// demo.startSimpleServer();
 		// demo.usePath();
 		// demo.listFiles();
 		// demo.useFileAttributeView();
 		// demo.checkUpdateRequired();
-		demo.calculate();
+		//demo.calculate();
 	}
 
 	public void useByteBuffer() {

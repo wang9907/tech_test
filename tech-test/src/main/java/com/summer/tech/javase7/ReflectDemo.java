@@ -1,16 +1,26 @@
 package com.summer.tech.javase7;
 
+import java.io.IOException;
+import java.lang.invoke.CallSite;
+import java.lang.invoke.ConstantCallSite;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandleProxies;
 import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.MethodType;
+import java.lang.invoke.MutableCallSite;
 import java.lang.invoke.SwitchPoint;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javassist.tools.reflect.Sample;
+
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
 
 public class ReflectDemo {
 
@@ -387,6 +397,7 @@ public class ReflectDemo {
 		MethodHandles.Lookup lookup=MethodHandles.lookup();
 		MethodHandle mh=lookup.findSpecial(ReflectDemo.class,"privateMethod",MethodType.methodType(void.class),ReflectDemo.class);
 		mh=mh.bindTo(this);
+		return mh;
 	}
 
 	//使用方法句柄实现数组操作的示例
@@ -411,8 +422,8 @@ public class ReflectDemo {
 		return result;
 	}
 	//	使用方法句柄实现的柯里化	
-	//。柯里化的含义是对一个方法的参数值进行预先设置之后，得到一个新的方法。比如一个做加法运算的方法，本来有两个参数，通过柯里化
-	//把其中一个参数的值设为5之后，得到的新方法就只有一个参数。新方法的运行结果是用5加上这个唯一的参数的值。
+	//。柯里化的含义是对一个方法的参数值进行预先设置之后,得到一个新的方法。比如一个做加法运算的方法,本来有两个参数,通过柯里化
+	//把其中一个参数的值设为5之后,得到的新方法就只有一个参数。新方法的运行结果是用5加上这个唯一的参数的值。
 	public static MethodHandle curry(MethodHandle handle, int value){
 		return MethodHandles.insertArguments(handle,0,value);
 	}
@@ -425,5 +436,55 @@ public class ReflectDemo {
 		MethodHandle mhAdd=lookup.findStatic(ReflectDemo.class,"add",type);
 		MethodHandle mh=curry(mhAdd,5);
 		return(int)mh.invoke(a);
+	}
+	
+	//ConstantCallSite的使用示例
+	public void useConstantCallSite()throws Throwable{
+		MethodHandles.Lookup lookup=MethodHandles.lookup();
+		MethodType type=MethodType.methodType(String.class, int.class, int.class);
+		MethodHandle mh=lookup.findVirtual(String.class,"substring",type);
+		ConstantCallSite callSite=new ConstantCallSite(mh);
+		MethodHandle invoker=callSite.dynamicInvoker();
+		String result=(String)invoker.invoke("Hello",2,3);
+	}
+	
+	//MutableCallSite的使用示例
+	public void useMutableCallSite()throws Throwable{
+		MethodType type=MethodType.methodType(int.class, int.class, int.class);
+		MutableCallSite callSite=new MutableCallSite(type);
+		MethodHandle invoker=callSite.dynamicInvoker();
+		MethodHandles.Lookup lookup=MethodHandles.lookup();
+		MethodHandle mhMax=lookup.findStatic(Math.class,"max",type);
+		MethodHandle mhMin=lookup.findStatic(Math.class,"min",type);
+		callSite.setTarget(mhMax);
+		int result=(int)invoker.invoke(3,5);//值为5
+		callSite.setTarget(mhMin);
+		result=(int)invoker.invoke(3,5);//值为3
+	}
+
+	
+	public class ToUpperCase{
+		public CallSite bootstrap(Lookup lookup,String name, MethodType type, String value)throws Exception{
+			MethodHandle mh=lookup.findVirtual(String.class,"toUpperCase",MethodType.methodType(String.class)).bindTo(value);
+			return new ConstantCallSite(mh);
+		}
+	}
+	//生成使用invokedynamic指令的字节代码
+	public class ToUpperCaseGenerator{
+		/*private static final MethodHandle BSM=new MethodHandle(MH_INVOKESTATIC,ToUpperCase.class.getName().replace('.','/'),"bootstrap",MethodType.methodType(CallSite.class, Lookup.class, String.class, MethodType.class, String.class).toMethodDescriptorString());
+		public static void main(String[] args)throws IOException{
+			ClassWriter cw=new ClassWriter(ClassWriter.COMPUTE_FRAMES);
+			cw.visit(V1_7,ACC_PUBLIC|ACC_SUPER,"ToUpperCaseMain",null,"java/lang/Object",null);
+			MethodVisitor mv=cw.visitMethod(ACC_PUBLIC|ACC_STATIC,"main","([Ljava/lang/String;)V",null, null);
+			mv.visitCode();
+			mv.visitFieldInsn(GETSTATIC,"java/lang/System","out","Ljava/io/PrintStream;");
+			mv.visitInvokeDynamicInsn("toUpperCase","()Ljava/lang/String;",BSM,"Hello");
+			mv.visitMethodInsn(INVOKEVIRTUAL,"java/io/PrintStream","println","(Ljava/lang/String;)V");
+			mv.visitInsn(RETURN);
+			mv.visitMaxs(0,0);
+			mv.visitEnd();
+			cw.visitEnd();
+			Files.write(Paths.get("ToUpperCaseMain.class"),cw.toByteArray());
+		}*/
 	}
 }
