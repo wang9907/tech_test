@@ -20,7 +20,6 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.Channels;
 import java.nio.channels.CompletionHandler;
 import java.nio.channels.FileChannel;
-import java.nio.channels.NetworkChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -28,15 +27,18 @@ import java.nio.charset.Charset;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.DosFileAttributes;
 import java.nio.file.attribute.FileTime;
@@ -61,16 +63,16 @@ public class NIOBufferDemo {
 		// demo.compact();
 		// demo.viewBuffer();
 		// demo.openAndWrite();
-		//demo.readWriteAbsolute();
-		 //demo.loadWebPage("http://www.baidu.com");
+		// demo.readWriteAbsolute();
+		// demo.loadWebPage("http://www.baidu.com");
 		// demo.mapFile();
-		 demo.loadWebPageUseSocket();
+		demo.loadWebPageUseSocket();
 		// demo.startSimpleServer();
 		// demo.usePath();
 		// demo.listFiles();
 		// demo.useFileAttributeView();
 		// demo.checkUpdateRequired();
-		//demo.calculate();
+		// demo.calculate();
 	}
 
 	public void useByteBuffer() {
@@ -151,7 +153,7 @@ public class NIOBufferDemo {
 				StandardOpenOption.READ)) {
 			FileChannel dest = FileChannel.open(Paths.get("descFile.txt"),
 					StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-			while (src.read(buffer) > -1 || buffer.position() != 0) {
+			while (src.read(buffer) > 1 || buffer.position() != 0) {
 				buffer.flip();
 				dest.write(buffer);
 				buffer.compact();
@@ -192,7 +194,7 @@ public class NIOBufferDemo {
 			SocketChannel sc = SocketChannel
 					.open(new InetSocketAddress("www.baidu.com", 80));
 			String request = "GET / HTTP/1.1\r\n\r\nHost: www.baidu.com\r\n\r\n";
-			ByteBuffer header = ByteBuffer.wrap(request.getBytes("UTF-8"));
+			ByteBuffer header = ByteBuffer.wrap(request.getBytes("UTF8"));
 			sc.write(header);
 			destChannel.transferFrom(sc, 0, Integer.MAX_VALUE);
 		}
@@ -204,7 +206,7 @@ public class NIOBufferDemo {
 		channel.bind(new InetSocketAddress("localhost", 10080));
 		while (true) {
 			try (SocketChannel sc = channel.accept()) {
-				sc.write(ByteBuffer.wrap("Hello".getBytes("UTF-8")));
+				sc.write(ByteBuffer.wrap("Hello".getBytes("UTF8")));
 			}
 		}
 	}
@@ -230,13 +232,50 @@ public class NIOBufferDemo {
 	// 目录列表流
 	public void listFiles() throws IOException {
 		Path path = Paths.get(
-				"C:\\Users\\000807\\git\\tech_test\\tech-test\\src\\main\\java\\com\\summer\\tech\\javase7");
+				"C:\\Users\\000807\\git\\tech_test\\techtest\\src\\main\\java\\com\\summer\\tech\\javase7");
 		System.out.println(path.getFileName());
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(path,
 				"*.java")) {
 			for (Path entry : stream) {
 				System.out.println(entry.getFileName());
 			}
+		}
+	}
+
+	// 删除Subversion元数据的目录遍历方式
+	public class SvnInfoCleanVisitor extends SimpleFileVisitor<Path> {
+		private boolean cleanMark = false;
+
+		private boolean isSvnFolder(Path dir) {
+			return ".svn".equals(dir.getFileName().toString());
+		}
+
+		public FileVisitResult preVisitDirectory(Path dir,
+				BasicFileAttributes attrs) throws IOException {
+			if (isSvnFolder(dir)) {
+				cleanMark = true;
+			}
+			return FileVisitResult.CONTINUE;
+		}
+
+		public FileVisitResult postVisitDirectory(Path dir, IOException e)
+				throws IOException {
+			if (e == null && cleanMark) {
+				Files.delete(dir);
+				if (isSvnFolder(dir)) {
+					cleanMark = false;
+				}
+			}
+			return FileVisitResult.CONTINUE;
+		}
+
+		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+				throws IOException {
+			if (cleanMark) {
+				Files.setAttribute(file, "dos：readonly", false);
+				Files.delete(file);
+			}
+			return FileVisitResult.CONTINUE;
 		}
 	}
 
@@ -282,7 +321,7 @@ public class NIOBufferDemo {
 		List<String> content = new ArrayList<String>();
 		content.add("Hello");
 		content.add("Word");
-		Files.write(newFile, content, Charset.forName("UTF-8"));
+		Files.write(newFile, content, Charset.forName("UTF8"));
 		Files.size(newFile);
 		byte[] bytes = Files.readAllBytes(newFile);
 		System.out.println(bytes);
@@ -356,17 +395,18 @@ public class NIOBufferDemo {
 				.withFixedThreadPool(10, Executors.defaultThreadFactory());
 		final AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel
 				.open(group).bind(new InetSocketAddress(10080));
-		serverChannel.accept(null,new CompletionHandler<AsynchronousSocketChannel, Void>() {
-			public void completed(AsynchronousSocketChannel result,
-					Void attachment) {
+		serverChannel.accept(null,
+				new CompletionHandler<AsynchronousSocketChannel, Void>() {
+					public void completed(AsynchronousSocketChannel result,
+							Void attachment) {
 
-			}
-			@Override
-			public void failed(Throwable exc, Void attachment) {
+					}
 
-			}
-		});
+					@Override
+					public void failed(Throwable exc, Void attachment) {
+
+					}
+				});
 	}
-
 
 }
