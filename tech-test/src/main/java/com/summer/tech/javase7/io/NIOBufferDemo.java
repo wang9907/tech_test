@@ -66,13 +66,15 @@ public class NIOBufferDemo {
 		// demo.readWriteAbsolute();
 		// demo.loadWebPage("http://www.baidu.com");
 		// demo.mapFile();
-		demo.loadWebPageUseSocket();
+		//demo.loadWebPageUseSocket();
 		// demo.startSimpleServer();
 		// demo.usePath();
 		// demo.listFiles();
 		// demo.useFileAttributeView();
 		// demo.checkUpdateRequired();
 		// demo.calculate();
+		//demo.addFileToZip(new File("D:\\lixiao\\idfile1.zip"), new File("D:\\lixiao\\idfile22.txt"));
+		demo.addFileToZip2(new File("D:\\lixiao\\idfile1.zip"), new File("D:\\lixiao\\newname.txt"));
 	}
 
 	public void useByteBuffer() {
@@ -333,8 +335,10 @@ public class NIOBufferDemo {
 	// 向已有的zip文件添加新文件的传统做法
 	public void addFileToZip(File zipFile, File fileToAdd) throws IOException {
 		File tempFile = File.createTempFile(zipFile.getName(), null);
+		System.out.println(tempFile.getAbsolutePath());
 		tempFile.delete();
 		zipFile.renameTo(tempFile);
+		System.out.println(zipFile.getAbsolutePath());
 		try (ZipInputStream input = new ZipInputStream(
 				new FileInputStream(tempFile));
 				ZipOutputStream output = new ZipOutputStream(
@@ -372,12 +376,13 @@ public class NIOBufferDemo {
 				.newFileSystem(URI.create("jar:" + zipFile.toURI()), env)) {
 			Path pathToAddFile = fileToAdd.toPath();
 			Path pathInZipfile = fs.getPath("/" + fileToAdd.getName());
+			System.out.println(pathInZipfile.toString());
 			Files.copy(pathToAddFile, pathInZipfile,
 					StandardCopyOption.REPLACE_EXISTING);
 		}
 	}
 
-	// 向异步通道中写入数据
+	// 向异步文件通道中写入数据
 	public void asyncWrite()
 			throws IOException, InterruptedException, ExecutionException {
 		AsynchronousFileChannel channel = AsynchronousFileChannel.open(

@@ -17,10 +17,11 @@ public class TimeClient {
 
 	public static void main(String[] args) throws IOException {
 		 new TimeClient().start();
+		//showNetworkInterface();
 	}
 
 	public void start() throws IOException {
-		NetworkInterface ni = NetworkInterface.getByName("eth3");
+		NetworkInterface ni = NetworkInterface.getByName("wlan0");
 		int port = 5000;
 		try (DatagramChannel dc = DatagramChannel
 				.open(StandardProtocolFamily.INET)
@@ -40,7 +41,7 @@ public class TimeClient {
 		}
 	}
 
-	public void showNetworkInterface() throws SocketException {
+	public static void showNetworkInterface() throws SocketException {
 		Enumeration<NetworkInterface> enu = NetworkInterface
 				.getNetworkInterfaces();
 		while (enu.hasMoreElements()) {
