@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<!-- 自动扫描 @Service注解标注的类 -->
+    <context:component-scan base-package="com.summer.tech.springmvc.service" />
+
+    <!-- 引入配置文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 多数据源配置，配置国康健康数据库开始 -->
+	<!-- 配置数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName1}" />
+		<property name="jdbcUrl" value="${jdbc.url1}" />
+		<property name="user" value="${jdbc.username1}" />
+		<property name="password" value="${jdbc.password1}" />
+		<property name="autoCommitOnClose" value="true"/>
+		<property name="checkoutTimeout" value="${cpool.checkoutTimeout1}"/>
+		<property name="initialPoolSize" value="${cpool.minPoolSize1}"/>
+		<property name="minPoolSize" value="${cpool.minPoolSize1}"/>
+		<property name="maxPoolSize" value="${cpool.maxPoolSize1}"/>
+		<property name="maxIdleTime" value="${cpool.maxIdleTime1}"/>
+		<property name="acquireIncrement" value="${cpool.acquireIncrement1}"/>
+		<property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections1}"/>
+	</bean>
+
+</beans>
