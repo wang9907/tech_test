@@ -34,4 +34,9 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet>  
+	    <servlet-name>forwarding</servlet-name>  
+	    <servlet-class>com.summer.tech.springmvc.servlet.ForwardingServlet</servlet-class>  
+	</servlet> 
+	
 </web-app>

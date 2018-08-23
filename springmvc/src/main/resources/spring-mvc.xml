@@ -50,5 +50,34 @@
 	<bean id="/helloWithoutReturnModelAndView.htm" class="com.summer.tech.springmvc.controller.HelloWorldWithoutReturnModelAndViewController">
 		<property name="supportedMethods" value="POST,HEAD"></property>
 	</bean>
+	
+	<bean id="/helloLastModified.htm" class="com.summer.tech.springmvc.controller.HelloWorldLastModifiedCacheController">
+	</bean>
 
+	<bean name="/forwardToServlet.htm"   
+		class="org.springframework.web.servlet.mvc.ServletForwardingController">  
+        <property name="servletName" value="forwarding"></property>  
+	</bean> 
+	
+	<bean name="/parameterizableView.htm"   
+	class="org.springframework.web.servlet.mvc.ParameterizableViewController">  
+	<property name="viewName" value="hello"/>  
+	</bean>  
+	
+	<!-- 
+	/index1/*：可以匹配/index1/demo，但不匹配/index1/demo/demo，如/index1/demo逻辑视图名为demo；
+	/index2/**：可以匹配/index2路径下的所有子路径，如匹配/index2/demo，或/index2/demo/demo，“/index2/demo”的逻辑视图名为demo，而“/index2/demo/demo”逻辑视图名为demo/demo；
+	/*.html：可以匹配如/abc.html，逻辑视图名为abc，后缀会被删除（不仅仅可以是html）；
+	/index3/*.html：可以匹配/index3/abc.html，逻辑视图名也是abc;
+	 -->
+	<bean name="/index1/*"   
+	class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>  
+	<bean name="/index2/**"   
+	class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>  
+	<bean name="/*.html"   
+	class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>  
+	<bean name="/index3/*.html"   
+	class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>  
+	
+	
 </beans>
