@@ -3,5 +3,6 @@
 <body>
 <h2>Hello World!</h2>
 <%=request.getSession().getId() %>
+${message}
 </body>
 </html>

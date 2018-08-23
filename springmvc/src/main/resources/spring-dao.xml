@@ -20,18 +20,18 @@
 	<!-- 多数据源配置，配置国康健康数据库开始 -->
 	<!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${jdbc.driverClassName1}" />
-		<property name="jdbcUrl" value="${jdbc.url1}" />
-		<property name="user" value="${jdbc.username1}" />
-		<property name="password" value="${jdbc.password1}" />
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 		<property name="autoCommitOnClose" value="true"/>
-		<property name="checkoutTimeout" value="${cpool.checkoutTimeout1}"/>
-		<property name="initialPoolSize" value="${cpool.minPoolSize1}"/>
-		<property name="minPoolSize" value="${cpool.minPoolSize1}"/>
-		<property name="maxPoolSize" value="${cpool.maxPoolSize1}"/>
-		<property name="maxIdleTime" value="${cpool.maxIdleTime1}"/>
-		<property name="acquireIncrement" value="${cpool.acquireIncrement1}"/>
-		<property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections1}"/>
+		<property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>
+		<property name="initialPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="minPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="maxPoolSize" value="${cpool.maxPoolSize}"/>
+		<property name="maxIdleTime" value="${cpool.maxIdleTime}"/>
+		<property name="acquireIncrement" value="${cpool.acquireIncrement}"/>
+		<property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections}"/>
 	</bean>
 
 </beans>

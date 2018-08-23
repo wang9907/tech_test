@@ -25,11 +25,10 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
-	<mvc:resources location="gkjkwxre" mapping="/gkjkwxre/*"/>
-
-	<context:component-scan base-package="com.gk.weixin.gkjk.controller" />
-    <context:component-scan base-package="com.gk.weixin.gkjk.service" />
+	<!--
+	<context:component-scan base-package="com.summer.tech.springmvc.controller" />
+	-->
+    <context:component-scan base-package="com.summer.tech.springmvc.service" />
     <!-- 上传文件 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <!-- set the max upload size100MB -->
@@ -42,8 +41,9 @@
 	</bean>
 	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/gkjkwx/" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<bean id="/hello" class="com.summer.tech.springmvc.controller.HelloWorldController"></bean>
 </beans>
