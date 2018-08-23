@@ -45,5 +45,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="/hello" class="com.summer.tech.springmvc.controller.HelloWorldController"></bean>
+	<bean id="/hello.htm" class="com.summer.tech.springmvc.controller.HelloWorldController"></bean>
+
+	<bean id="/helloWithoutReturnModelAndView.htm" class="com.summer.tech.springmvc.controller.HelloWorldWithoutReturnModelAndViewController">
+		<property name="supportedMethods" value="POST,HEAD"></property>
+	</bean>
+
 </beans>
