@@ -2,6 +2,7 @@ package com.summer.tech.mybatis;
 
 import java.io.IOException;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 
 import com.summer.tech.mybatis.dao.DoctorMapper;
@@ -15,7 +16,12 @@ public class MybatisTest {
 		DoctorMapper mapper = session.getMapper(DoctorMapper.class);
 		DoctorWithBLOBs doc = mapper.selectByPrimaryKey(21L);
 		System.out.println(doc.getName());
-
+		new SQL(){
+			{
+				SELECT("");
+				FROM("");
+			}
+		};
 		session.close();
 	}
 
