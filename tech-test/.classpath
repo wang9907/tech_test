@@ -28,5 +28,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/000807/git/tech_test/tech-test/lib/jmxri.jar"/>
+	<classpathentry kind="lib" path="C:/Users/000807/git/tech_test/tech-test/lib/jmxtools.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
