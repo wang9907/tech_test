@@ -19,4 +19,8 @@ public class HelloWorldService implements IHelloWorldService {
 	public String toHello(String param) throws Exception {
 		return "你好" + param;
 	}
+	
+	public void sayHello1(String param) {
+		System.out.println("============"+param);
+	}
 }
