@@ -17,6 +17,7 @@ public class ReadCompleteHandler implements CompletionHandler<Integer, ByteBuffe
 
 	@Override
 	public void completed(Integer result, ByteBuffer attachment) {
+		System.out.println("sreadresult:"+result);
 		attachment.flip();
 		byte[] body = new byte[attachment.remaining()];
 		attachment.get(body);

@@ -25,7 +25,9 @@ public class AsyncTimeServerHandler implements Runnable {
 	@Override
 	public void run() {
 		latch = new CountDownLatch(1);
+		System.out.println("11");
 		doAccept();
+		System.out.println("22");
 		try {
 			latch.await();
 		} catch (InterruptedException e) {

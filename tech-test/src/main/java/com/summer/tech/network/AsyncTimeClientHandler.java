@@ -49,7 +49,7 @@ public class AsyncTimeClientHandler implements Runnable, CompletionHandler<Void,
 		client.write(writeBuffer, writeBuffer, new CompletionHandler<Integer, ByteBuffer>() {
 			@Override
 			public void completed(Integer result, ByteBuffer attachment) {
-				System.out.println("writeresult:" + result);
+				System.out.println("cwriteresult:" + result);
 				if (writeBuffer.hasRemaining()) {
 					client.write(writeBuffer, writeBuffer, this);
 				} else {
