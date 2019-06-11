@@ -14,10 +14,9 @@ public class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
 	protected void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline = ch.pipeline();
 		// 以（"\n"）为结尾分割的 解码器
-		pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
+		//pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
 		// 字符串解码和编码
 		pipeline.addLast("decoder", new StringDecoder());
-		pipeline.addLast(new StringEncoder());
 		// 自己的逻辑handler
 		ch.pipeline().addLast(new TimeServerHandler());
 	}

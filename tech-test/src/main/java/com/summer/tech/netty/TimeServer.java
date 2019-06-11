@@ -1,6 +1,7 @@
 package com.summer.tech.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -20,7 +21,7 @@ public class TimeServer {
 			System.out.println("1");
 			// 绑定端口，同步等待成功
 			ChannelFuture f = b.bind(port).sync();
-			
+//			Channel ch = f.channel();
 			System.out.println("2");
 			// 等待服务端监听器端口关闭
 			f.channel().closeFuture().sync();
