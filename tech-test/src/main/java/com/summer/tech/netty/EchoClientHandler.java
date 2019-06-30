@@ -7,7 +7,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class EchoClientHandler extends SimpleChannelInboundHandler<String> {
 
 	private int counter;
-	static final String ECHO_REQ = "Hi,Lilinfeng.Welcome to Netty work.";
+	static final String ECHO_REQ = "Hi,Lilinfeng.Welcome to Netty work.$_";
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
