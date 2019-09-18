@@ -28,7 +28,7 @@ public class HashTest {
 		System.out.println("md5加密，不加盐=" + password_md5);
 
 		// md5加密，加盐，一次散列
-		String password_md5_sale_1 = new Md5Hash("111111", "guokang", 1).toString();
+		String password_md5_sale_1 = new Md5Hash("123", "guokang", 1).toString();
 		System.out.println("md5加密，加盐，一次散列=" + password_md5_sale_1);
 
 		String password_md5_sale_2 = new Md5Hash("111111", "kangguo", 1).toString();

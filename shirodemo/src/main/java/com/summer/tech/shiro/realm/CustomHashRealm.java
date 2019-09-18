@@ -49,12 +49,12 @@ public class CustomHashRealm extends AuthorizingRealm {
 		// 从token中获取用户身份信息
 		String username = (String) token.getPrincipal();
 		// 获取从数据库查询出来的用户密码
-		String password = "";// 123+guokang的md5值
-		//盐，随机数，此随机数也在数据库存储
+		String password = "e7695fdc653969929de8a74b8c450d03";// 123+guokang的md5值
+		// 盐，随机数，此随机数也在数据库存储
 		String salt = "guokang";
 		// 返回认证信息由父类AuthenticationRealm进行认证
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, password,ByteSource.Util.bytes(salt), getName());
-
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, password,
+				ByteSource.Util.bytes(salt), getName());
 		return authenticationInfo;
 	}
 

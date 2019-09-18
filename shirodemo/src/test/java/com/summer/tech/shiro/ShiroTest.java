@@ -31,7 +31,7 @@ public class ShiroTest {
 	@Test
 	public void testLoginLogout() {
 		// 构建SecurityManager工厂，IniSecurityManager可以从ini文件中初始化SecurityManager环境
-		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-crypto.ini");
 		// 通过工厂创建SecurityManager
 		SecurityManager securityManager = factory.getInstance();
 		// 将securityManager设置到运行环境中
