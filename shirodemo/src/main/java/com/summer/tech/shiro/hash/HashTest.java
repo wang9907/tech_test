@@ -37,5 +37,6 @@ public class HashTest {
 		// 使用SimpleHash
 		String simpleHash = new SimpleHash("MD5", "111111", "guokang", 1).toString();
 		System.out.println(simpleHash);
+
 	}
 }
