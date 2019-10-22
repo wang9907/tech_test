@@ -50,11 +50,12 @@
 	        <artifactId>mysql-connector-java</artifactId>
 	    </dependency>
 
-		<dependency>
+		<!-- <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-devtools</artifactId>
 	        <optional>true</optional>
 		</dependency>
+		 -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-redis</artifactId>
@@ -64,6 +65,11 @@
 		    <groupId>org.springframework.session</groupId>
 		    <artifactId>spring-session-data-redis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.18</version>
+	</dependency>
 	</dependencies>
 
 	<build>
