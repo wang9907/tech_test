@@ -4,7 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.QueueingConsumer;
 
-public class Recv {
+public class Recv2 {
 
 	private final static String QUEUE_NAME = "q_test_01";
 
@@ -22,7 +22,6 @@ public class Recv {
 
 		// 监听队列
 		// channel.basicConsume(QUEUE_NAME, true, consumer);
-
 		channel.basicConsume(QUEUE_NAME, false, consumer);
 		channel.basicQos(1);
 
@@ -32,9 +31,10 @@ public class Recv {
 			String message = new String(delivery.getBody());
 			System.out.println(" [x] Received '" + message + "'");
 
-			Thread.sleep(10);
 			// 下面这行注释掉表示使用自动确认模式
 			channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+
+			Thread.sleep(1000);
 		}
 	}
 }
