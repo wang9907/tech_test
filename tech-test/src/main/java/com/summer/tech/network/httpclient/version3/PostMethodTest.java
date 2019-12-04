@@ -10,12 +10,19 @@
 package com.summer.tech.network.httpclient.version3;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.http.Header;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 /**
  * @ClassName: GetMethodTest
@@ -28,29 +35,38 @@ import org.apache.commons.httpclient.params.HttpClientParams;
 public class PostMethodTest {
 
 	public static void main(String[] args) {
-		HttpClient client = new HttpClient();
-		client.setConnectionTimeout(30000);
-		HttpClientParams params = new HttpClientParams();
-		params.setSoTimeout(30000);
-		params.setParameter(HttpClientParams.HTTP_CONTENT_CHARSET, "UTF-8");
-		client.setParams(params);
-
-		PostMethod postMethod = new PostMethod("http://www.baidu.com");
-		postMethod.setParameter("", "");
 		try {
-			client.executeMethod(postMethod);
-
-			System.out.println(postMethod.getStatusCode());
-			System.out.println(postMethod.getStatusText());
-			System.out.println(postMethod.getStatusLine());
-			Header[] responseHeaders = postMethod.getResponseHeaders();
+			CloseableHttpClient httpClient = HttpClients.custom().build();
+			// GET请求
+			HttpGet httpGet = new HttpGet("http://www.baidu.com");
+			CloseableHttpResponse response = httpClient.execute(httpGet);
+			System.out.println(response.getStatusLine().getStatusCode());
+			System.out.println(response.getStatusLine().getReasonPhrase());
+			Header[] responseHeaders = response.getAllHeaders();
 			for (Header h : responseHeaders) {
 				System.out.println(h.getName() + "-" + h.getValue());
 			}
-			System.out.println(postMethod.getResponseBodyAsString());
-			System.out.println(postMethod.getProxyAuthState());
-		} catch (HttpException e) {
-			e.printStackTrace();
+
+			/*
+			 * HttpEntity entity = response.getEntity(); BufferedReader reader =
+			 * new BufferedReader(new InputStreamReader(entity.getContent()));
+			 * String line = null; while ((line = reader.readLine()) != null) {
+			 * System.out.println(line); }
+			 */
+			System.out.println(EntityUtils.toString(response.getEntity()));
+
+			// POST请求
+			HttpPost httpPost = new HttpPost("http://www.baidu.com");
+			List<NameValuePair> formParams = new ArrayList<>();
+			// 表单参数
+			formParams.add(new BasicNameValuePair("name1", "value1"));
+			formParams.add(new BasicNameValuePair("name2", "value2"));
+
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formParams, "UTF-8");
+			httpPost.setEntity(entity);
+
+			CloseableHttpResponse resp = httpClient.execute(httpPost);
+			System.out.println(EntityUtils.toString(response.getEntity()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
