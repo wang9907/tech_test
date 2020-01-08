@@ -9,7 +9,7 @@
 <script type="text/javascript">
 var ws;
 function hello(){
-    ws = new WebSocket("ws://localhost:8080/websocketTest/hello");
+    ws = new WebSocket("ws://localhost:8086/springmvc/websocket/11");
     ws.onopen = function(evn){
         console.log(evn);
     };
