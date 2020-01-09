@@ -106,7 +106,7 @@ public class WebSocketTest {
 		for (String key : webSocketSet.keySet()) {
 			try {
 				// 判断接收用户是否是当前发消息的用户
-				if (userno.equals(key)) {
+				if (!userno.equals(key)) {
 					webSocketSet.get(key).sendMessage(now + "用户" + userno + "发来消息：" + " <br/> " + sendMessage);
 					System.out.println("key = " + key);
 				}
