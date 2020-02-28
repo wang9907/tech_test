@@ -121,4 +121,9 @@ public class SnakeAnnotation {
 			throw t;
 		}
 	}
+
+	public static void main(String[] args) {
+		System.out.println(SnakeAnnotation.getRandomHexColor());
+		System.out.println(SnakeAnnotation.getRandomLocation());
+	}
 }
