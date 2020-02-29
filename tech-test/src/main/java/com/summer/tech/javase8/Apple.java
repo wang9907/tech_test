@@ -1,21 +1,19 @@
 package com.summer.tech.javase8;
 
+/**
+ * Created by wangwenjun on 2016/10/12.
+ */
 public class Apple {
 
-	private String name;
 	private String color;
+	private long weight;
 
-	public Apple(String name, String color) {
-		this.name = name;
+	public Apple() {
+	}
+
+	public Apple(String color, long weight) {
 		this.color = color;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		this.weight = weight;
 	}
 
 	public String getColor() {
@@ -24,5 +22,18 @@ public class Apple {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public long getWeight() {
+		return weight;
+	}
+
+	public void setWeight(long weight) {
+		this.weight = weight;
+	}
+
+	@Override
+	public String toString() {
+		return "Apple{" + "color='" + color + '\'' + ", weight=" + weight + '}';
 	}
 }
