@@ -13,6 +13,7 @@ public class Test {
 		// }
 		// list.add(new Object());
 		// }
-		String[] arr = new String[10000000];
+		// String[] arr = new String[10000000];
+		System.out.println(System.getProperty("user.home"));
 	}
 }
