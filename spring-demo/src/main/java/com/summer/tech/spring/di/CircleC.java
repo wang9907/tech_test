@@ -15,6 +15,7 @@ public class CircleC {
 	}
 
 	public void c() {
+		System.out.println("C");
 		circleA.a();
 	}
 }
