@@ -31,9 +31,10 @@
  	-->
 	<!-- 基于注解实现AOP -->
 	<aop:aspectj-autoproxy proxy-target-class="false" />
-	<bean id="aspect"  class="com.summer.tech.spring.aop.HelloWorldAspectAnnotionArg"/>
+	<bean id="aspectarg"  class="com.summer.tech.spring.aop.HelloWorldAspectAnnotionArg"/>
+	<bean id="aspect"  class="com.summer.tech.spring.aop.HelloWorldAspectAnnotion"/>
 
-	<bean id="helloService" class="com.summer.tech.spring.aop.HelloWorldService" />
+	<bean id="helloService" class="com.summer.tech.spring.aop.HelloWorldService" scope="prototype"/>
 
 
 </beans>
