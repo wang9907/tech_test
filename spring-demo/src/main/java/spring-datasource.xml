@@ -1,17 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd
-       http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/aop/spring-tx-4.0.xsd"
        >
 
    	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -45,11 +45,46 @@
 	    logAbandoned：是否记录中断事件， 默认为 false；
 	 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
-	    <property name="driverClassName" value="${jdbc.driverClassName}" />
+	    <property name="driverClassName" value="${jdbc.driver}" />
 	    <property name="url" value="${jdbc.url}" />
 	    <property name="username" value="${jdbc.username}" />
-	    <property name="password" value="${jdbc.password}" />
+        <property name="password" value="${jdbc.password}" />
 	</bean>
+
+    <!-- JDBC 事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"  />
+    </bean>
+
+    <!-- 2. 配置事务属性 -->
+    <!--<tx:advice>元素声明事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 根据方法名指定事务的属性 -->
+            <tx:method name="*"/>
+            <!--propagation配置事务传播行为-->
+            <tx:method name="purchase" propagation="REQUIRES_NEW"/>
+            <!--isolation配置事务的隔离级别-->
+            <tx:method name="update*" isolation="SERIALIZABLE"/>
+            <!--rollback-for配置事务遇到异常必须回滚，no-rollback-for配置事务遇到异常必须不能回滚-->
+            <tx:method name="add*" rollback-for="java.io.IOException" no-rollback-for="com.dmsd.spring.tx.BookStockException"/>
+            <!--read-only配置事务只读属性-->
+            <tx:method name="find*" read-only="true"/>
+            <!--timeout配置事务的超时属性-->
+            <tx:method name="get*" timeout="3"/>
+        </tx:attributes>
+
+    </tx:advice>
+
+    <!-- 3. 配置事务切入点, 以及把事务切入点和事务属性关联起来 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* com.atguigu.spring.tx.xml.service.*.*(..))"
+                      id="txPointCut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+        <aop:aspect id="">
+            <aop:after method="dd" pointcut="execution(* )" pointcut-ref="txPointCut" />
+        </aop:aspect>
+    </aop:config>
 
 	<!-- C3P0是一个开放源代码的JDBC数据源实现项目，它在lib目录中与Hibernate一起发布，实现了JDBC3和JDBC2扩展规范说明的 Connection 和Statement 池。
 		ComboPooledDataSource和BasicDataSource一样提供了一个用于关闭数据源的close()方法，这样我们就可以保证Spring容器关闭时数据源能够成功释放。
@@ -75,6 +110,7 @@
 等方法来提升连接测试的性能。默认为false；
     testConnectionOnCheckin：如果设为true那么在取得连接的同时将校验连接的有效性。默认为false。
 	 -->
+	<!--
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
         destroy-method="close">
 	    <property name="driverClass" value="${jdbc.driverClassName}"/>
@@ -82,5 +118,19 @@
 	    <property name="user" value="${jdbc.username}"/>
 	    <property name="password" value="${jdbc.password}"/>
 	</bean>
+	-->
 
+
+    <!-- hibernate 事务 -->
+    <!--
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    -->
+    <!-- JPA事务 -->
+    <!--
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    -->
 </beans>
