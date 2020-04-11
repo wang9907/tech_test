@@ -1,32 +1,10 @@
 package com.summer.tech.spring.jdbc;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BatchPreparedStatementSetter;
-import org.springframework.jdbc.core.CallableStatementCreator;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowCallbackHandler;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.SqlReturnResultSet;
+import org.springframework.jdbc.core.*;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -42,14 +20,20 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class JdbcTemplateTest {
 	private static JdbcTemplate jdbcTemplate;
 
 	@BeforeClass
 	public static void setUpClass() {
 		String url = "jdbc:mysql://127.0.0.1:3306/test";
-		String username = "hjc";
-		String password = "hjc";
+		String username = "root";
+		String password = "123456";
 		DriverManagerDataSource dataSource = new DriverManagerDataSource(url,
 				username, password);
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -57,21 +41,7 @@ public class JdbcTemplateTest {
 		System.out.println("初始化");
 	}
 
-	// @Test
-	public void test() {
-		// 1.声明SQL
-		String sql = "select * from INFORMATION_SCHEMA.SYSTEM_VARIABLES";
-		jdbcTemplate.query(sql, new RowCallbackHandler() {
-			@Override
-			public void processRow(ResultSet rs) throws SQLException {
-				// 2.处理结果集
-				String value = rs.getString("VARIABLE_NAME");
-				System.out.println("VARIABLE_NAME:" + value);
-			}
-		});
-	}
-
-	// @Test
+	@Test
 	public void testPpreparedStatement1() {
 		int count = jdbcTemplate.execute(new PreparedStatementCreator() {
 			@Override
@@ -92,7 +62,7 @@ public class JdbcTemplateTest {
 		System.out.println(count);
 	}
 
-	// @Test
+	@Test
 	public void testPreparedStatement2() {
 		final String sql = "select count(*) from goods where id>?";
 		int count = jdbcTemplate.query(new PreparedStatementCreator() {
@@ -118,7 +88,7 @@ public class JdbcTemplateTest {
 		System.out.println(count);
 	}
 
-	// @Test
+	@Test
 	public void testResultSet1() {
 		String listSql = "select * from goods";
 		List result = jdbcTemplate.query(listSql, new RowMapper<Map>() {
@@ -132,9 +102,9 @@ public class JdbcTemplateTest {
 		Assert.assertEquals(1, result.size());
 	}
 
-	// @Test
+	@Test
 	public void testResultSet2() {
-		String listSql = "select * from test";
+		String listSql = "select * from goods";
 		final List result = new ArrayList();
 		jdbcTemplate.query(listSql, new RowCallbackHandler() {
 			@Override
@@ -147,9 +117,9 @@ public class JdbcTemplateTest {
 		Assert.assertEquals(1, result.size());
 	}
 
-	// @Test
+	@Test
 	public void testResultSet3() {
-		String listSql = "select * from test";
+		String listSql = "select * from goods";
 		List result = jdbcTemplate.query(listSql,
 				new ResultSetExtractor<List>() {
 					@Override
@@ -174,7 +144,7 @@ public class JdbcTemplateTest {
 		jdbcTemplate
 				.queryForObject("select count(*) from goods", Integer.class);
 		// 4.查询一批数据，默认将每行数据转换为Map
-		jdbcTemplate.queryForList("select * from test");
+		jdbcTemplate.queryForList("select * from goods");
 		// 5.只查询一列数据列表，列类型是String类型，列名字是name
 		jdbcTemplate.queryForList("select name from goods where name=?",
 				new Object[] { "name5" }, String.class);
@@ -182,7 +152,7 @@ public class JdbcTemplateTest {
 		SqlRowSet rs = jdbcTemplate.queryForRowSet("select * from goods");
 	}
 
-	// @Test
+	@Test
 	public void testCallableStatementCreator2() {
 		// 2.创建自定义函数
 		String createFunctionSql = "CREATE FUNCTION FUNCTION_TEST(str VARCHAR(100)) "
@@ -218,9 +188,9 @@ public class JdbcTemplateTest {
 		// new NamedParameterJdbcTemplate(dataSource);
 		namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
 				jdbcTemplate);
-		String insertSql = "insert into test(name) values(:name)";
-		String selectSql = "select * from test where name=:name";
-		String deleteSql = "delete from test where name=:name";
+		String insertSql = "insert into goods(name) values(:name)";
+		String selectSql = "select * from goods where name=:name";
+		String deleteSql = "delete from goods where name=:name";
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("name", "name5");
 		namedParameterJdbcTemplate.update(insertSql, paramMap);
@@ -234,35 +204,34 @@ public class JdbcTemplateTest {
 				});
 		Assert.assertEquals(1, result.size());
 		SqlParameterSource paramSource = new MapSqlParameterSource(paramMap);
-		namedParameterJdbcTemplate.update(deleteSql, paramSource);
+		//namedParameterJdbcTemplate.update(deleteSql, paramSource);
 	}
 
 	@Test
 	public void testSqlQuery() {
 		SqlQuery query = new UserModelSqlQuery(jdbcTemplate);
-		List<UserModel> result = query.execute("select * from user");
+		List<UserModel> result = query.execute("name5");
 		Assert.assertEquals(0, result.size());
 	}
 
 	@Test
 	public void testMappingSqlQuery() {
-		jdbcTemplate.update("insert into test(name) values('name5')");
+		jdbcTemplate.update("insert into goods(name) values('name2')");
 		SqlQuery<UserModel> query = new UserModelMappingSqlQuery(jdbcTemplate);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("name", "name5");
+		paramMap.put("name", "name2");
 		UserModel result = query.findObjectByNamedParam(paramMap);
 		Assert.assertNotNull(result);
 	}
-
 	@Test
 	// SqlFunction：SQL“函数”包装器，用于支持那些返回单行结果集的查询。该类主要用于返回单行单列结果集。
 	public void testSqlFunction() {
-		jdbcTemplate.update("insert into test(name) values('name5')");
-		String countSql = "select count(*) from test";
+		jdbcTemplate.update("insert into goods(name) values('name5')");
+		String countSql = "select count(*) from goods";
 		SqlFunction<Integer> sqlFunction1 = new SqlFunction<Integer>(
 				jdbcTemplate.getDataSource(), countSql);
 		Assert.assertEquals(1, sqlFunction1.run());
-		String selectSql = "select name from test where name=?";
+		String selectSql = "select name from goods where name=?";
 		SqlFunction<String> sqlFunction2 = new SqlFunction<String>(
 				jdbcTemplate.getDataSource(), selectSql);
 		sqlFunction2.declareParameter(new SqlParameter(Types.VARCHAR));
@@ -276,11 +245,11 @@ public class JdbcTemplateTest {
 		SqlUpdate insert = new InsertUserModel(jdbcTemplate);
 		insert.update("name5");
 
-		String updateSql = "update test set name=? where name=?";
+		String updateSql = "update goods set name=? where name=?";
 		SqlUpdate update = new SqlUpdate(jdbcTemplate.getDataSource(),
 				updateSql, new int[] { Types.VARCHAR, Types.VARCHAR });
 		update.update("name6", "name5");
-		String deleteSql = "delete from test where name=:name";
+		String deleteSql = "delete from goods where name=:name";
 
 		SqlUpdate delete = new SqlUpdate(jdbcTemplate.getDataSource(),
 				deleteSql, new int[] { Types.VARCHAR });
@@ -304,7 +273,7 @@ public class JdbcTemplateTest {
 	@Test
 	public void testSimpleJdbcInsert() {
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
-		insert.withTableName("test");
+		insert.withTableName("goods");
 		Map<String, Object> args = new HashMap<String, Object>();
 		args.put("name", "name5");
 		insert.compile();
@@ -312,13 +281,13 @@ public class JdbcTemplateTest {
 		insert.execute(args);
 		// 2.插入时获取主键值
 		insert = new SimpleJdbcInsert(jdbcTemplate);
-		insert.withTableName("test");
+		insert.withTableName("goods");
 		insert.setGeneratedKeyName("id");
 		Number id = insert.executeAndReturnKey(args);
 		Assert.assertEquals(1, id);
 		// 3.批处理
 		insert = new SimpleJdbcInsert(jdbcTemplate);
-		insert.withTableName("test");
+		insert.withTableName("goods");
 		insert.setGeneratedKeyName("id");
 		int[] updateCount = insert.executeBatch(new Map[] { args, args, args });
 		Assert.assertEquals(1, updateCount[0]);
@@ -358,21 +327,22 @@ public class JdbcTemplateTest {
 
 	@Test
 	public void testFetchKey1() throws SQLException {
-		final String insertSql = "insert into test(name) values('name5')";
+		final String insertSql = "insert into goods(name) values('name1')";
 		KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn)
 					throws SQLException {
-				return conn.prepareStatement(insertSql, new String[] { "ID" });
+				return conn.prepareStatement(insertSql, new String[] { "id" });
 			}
 		}, generatedKeyHolder);
-		Assert.assertEquals(0, generatedKeyHolder.getKey());
+		System.out.println(generatedKeyHolder.getKey());
+		//Assert.assertEquals(0, generatedKeyHolder.getKey());
 	}
 
 	@Test
 	public void testFetchKey2() {
-		final String insertSql = "insert into test(name) values('name5')";
+		final String insertSql = "insert into goods(name) values('name2')";
 		KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 		SqlUpdate update = new SqlUpdate();
 		update.setJdbcTemplate(jdbcTemplate);
@@ -380,19 +350,19 @@ public class JdbcTemplateTest {
 		// update.setGeneratedKeysColumnNames(new String[]{"ID"});
 		update.setSql(insertSql);
 		update.update(null, generatedKeyHolder);
-		Assert.assertEquals(0, generatedKeyHolder.getKey());
+		System.out.println(generatedKeyHolder.getKey());
 	}
 
 	@Test
 	public void testBatchUpdate1() {
-		String insertSql = "insert into test(name) values('name5')";
+		String insertSql = "insert into goods(name) values('name5')";
 		String[] batchSql = new String[] { insertSql, insertSql };
 		jdbcTemplate.batchUpdate(batchSql);
 	}
 
 	@Test
 	public void testBatchUpdate2() {
-		String insertSql = "insert into test(name) values(?)";
+		String insertSql = "insert into goods(name) values(?)";
 		final String[] batchValues = new String[] { "name5", "name6" };
 		jdbcTemplate.batchUpdate(insertSql, new BatchPreparedStatementSetter() {
 			@Override
@@ -412,7 +382,7 @@ public class JdbcTemplateTest {
 	public void testBatchUpdate3() {
 		NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(
 				jdbcTemplate);
-		String insertSql = "insert into test(name) values(:myName)";
+		String insertSql = "insert into goods(name) values(:myName)";
 		UserModel model = new UserModel();
 		model.setName("name5");
 		SqlParameterSource[] params = SqlParameterSourceUtils
@@ -423,7 +393,7 @@ public class JdbcTemplateTest {
 	@Test
 	public void testBatchUpdate5() {
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
-		insert.withTableName("test");
+		insert.withTableName("goods");
 		Map<String, Object> valueMap = new HashMap<String, Object>();
 		valueMap.put("name", "name5");
 		insert.executeBatch(new Map[] { valueMap, valueMap });

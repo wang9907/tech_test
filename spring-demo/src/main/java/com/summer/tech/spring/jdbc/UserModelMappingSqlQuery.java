@@ -12,7 +12,7 @@ import org.springframework.jdbc.object.MappingSqlQuery;
 public class UserModelMappingSqlQuery extends MappingSqlQuery<UserModel> {
 	public UserModelMappingSqlQuery(JdbcTemplate jdbcTemplate) {
 		super.setDataSource(jdbcTemplate.getDataSource());
-		super.setSql("select * from test where name=:name");
+		super.setSql("select * from goods where name=:name");
 		super.declareParameter(new SqlParameter("name", Types.VARCHAR));
 		compile();
 	}

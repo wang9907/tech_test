@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/aop/spring-tx-4.0.xsd"
+       http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
        >
 
    	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -78,12 +78,9 @@
 
     <!-- 3. 配置事务切入点, 以及把事务切入点和事务属性关联起来 -->
     <aop:config>
-        <aop:pointcut expression="execution(* com.atguigu.spring.tx.xml.service.*.*(..))"
-                      id="txPointCut"/>
+        <aop:pointcut expression="execution(* com.summer.tech.spring.jdbc.*.*(..))" id="txPointCut"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
-        <aop:aspect id="">
-            <aop:after method="dd" pointcut="execution(* )" pointcut-ref="txPointCut" />
-        </aop:aspect>
+
     </aop:config>
 
 	<!-- C3P0是一个开放源代码的JDBC数据源实现项目，它在lib目录中与Hibernate一起发布，实现了JDBC3和JDBC2扩展规范说明的 Connection 和Statement 池。

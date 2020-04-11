@@ -10,7 +10,7 @@ import org.springframework.jdbc.object.SqlUpdate;
 public class InsertUserModel extends SqlUpdate {  
     public InsertUserModel(JdbcTemplate jdbcTemplate) {  
         super.setJdbcTemplate(jdbcTemplate);  
-        super.setSql("insert into test(name) values(?)");  
+        super.setSql("insert into goods(name) values(?)");
         super.declareParameter(new SqlParameter(Types.VARCHAR));  
         compile();  
     }  

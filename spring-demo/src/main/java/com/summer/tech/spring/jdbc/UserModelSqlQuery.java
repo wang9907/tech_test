@@ -13,7 +13,7 @@ public class UserModelSqlQuery extends SqlQuery<UserModel> {
 	public UserModelSqlQuery(JdbcTemplate jdbcTemplate) {
 		// super.setDataSource(jdbcTemplate.getDataSource());
 		super.setJdbcTemplate(jdbcTemplate);
-		super.setSql("select * from test where name=?");
+		super.setSql("select * from goods where name=?");
 		super.declareParameter(new SqlParameter(Types.VARCHAR));
 		compile();
 	}
