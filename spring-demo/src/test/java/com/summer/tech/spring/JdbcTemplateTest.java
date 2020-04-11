@@ -1,5 +1,6 @@
-package com.summer.tech.spring.jdbc;
+package com.summer.tech.spring;
 
+import com.summer.tech.spring.jdbc.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -1,10 +1,9 @@
 package com.summer.tech.spring.di.methodinject;
 
-import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MethodInjectTest {
-	@Test
+
 	public void testLookup() {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring-methodinject.xml");

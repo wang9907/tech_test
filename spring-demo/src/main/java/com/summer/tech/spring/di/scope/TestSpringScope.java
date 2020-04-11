@@ -1,11 +1,9 @@
 package com.summer.tech.spring.di.scope;
 
-import org.junit.Test;
-
 import com.summer.tech.spring.di.HelloBean;
 
 public class TestSpringScope {
-	@Test
+
 	public void testPrototype() throws Exception {
 		// 1.创建Bean工厂
 		DefaultBeanFactory bf = new DefaultBeanFactory();

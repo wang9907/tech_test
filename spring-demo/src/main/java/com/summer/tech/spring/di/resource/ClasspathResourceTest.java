@@ -1,12 +1,10 @@
 package com.summer.tech.spring.di.resource;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.junit.Assert;
-import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ClasspathResourceTest {
 	public static void main(String[] args) throws IOException {
@@ -39,7 +37,6 @@ public class ClasspathResourceTest {
 		}
 	}
 
-	@Test
     public void testClasspathResourceByClassLoader() throws IOException {
         ClassLoader cl = this.getClass().getClassLoader();
         Resource resource = new ClassPathResource("test.properties",cl);
@@ -47,6 +44,5 @@ public class ClasspathResourceTest {
             dumpStream(resource);
         }
         System.out.println("path:" + resource.getFile().getAbsolutePath());
-        Assert.assertEquals(false, resource.isOpen());
     }
 }

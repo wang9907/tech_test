@@ -1,9 +1,4 @@
-package com.summer.tech.spring.jdbc;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
-import javax.sql.DataSource;
+package com.summer.tech.spring;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,6 +10,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 //省略import  
 public class TransactionTest {
