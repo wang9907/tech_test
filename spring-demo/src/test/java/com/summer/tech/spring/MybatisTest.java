@@ -17,9 +17,19 @@ public class MybatisTest {
     StudentDao studentDao;
 
     @Test
+    public void insertTest(){
+        StudentBo studentBo=new StudentBo();
+        studentBo.setName("小明");
+        studentBo.setAge(8);
+        studentBo.setAddress("宝安裕丰花园");
+        studentDao.insert(studentBo);
+    }
+
+    @Test
     public void quertTest(){
         int id = 1;
         StudentBo studentBo = studentDao.selectByPrimaryKey(id);
+        System.out.println(studentBo);
     }
 
 }

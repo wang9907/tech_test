@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhanglf.dao.StudentDao">
-	<resultMap id="BaseResultMap" type="com.zhanglf.bo.StudentBo">
+<mapper namespace="com.summer.tech.spring.mybatis.dao.StudentDao">
+	<resultMap id="BaseResultMap" type="com.summer.tech.spring.mybatis.entity.StudentBo">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
@@ -38,7 +38,7 @@
 	</delete>
 
 
-	<insert id="insert" parameterType="com.zhanglf.bo.StudentBo">
+	<insert id="insert" parameterType="com.summer.tech.spring.mybatis.entity.StudentBo">
 		insert into student (id, name,
 		age,
 		address)
@@ -48,7 +48,7 @@
 	</insert>
 
 
-	<insert id="insertSelective" parameterType="com.zhanglf.bo.StudentBo">
+	<insert id="insertSelective" parameterType="com.summer.tech.spring.mybatis.entity.StudentBo">
 		insert into student
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -81,7 +81,7 @@
 	</insert>
 
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.zhanglf.bo.StudentBo">
+	<update id="updateByPrimaryKeySelective" parameterType="com.summer.tech.spring.mybatis.entity.StudentBo">
 		update student
 		<set>
 			<if test="name != null">
@@ -98,7 +98,7 @@
 	</update>
 
 
-	<update id="updateByPrimaryKey" parameterType="com.zhanglf.bo.StudentBo">
+	<update id="updateByPrimaryKey" parameterType="com.summer.tech.spring.mybatis.entity.StudentBo">
 		update student
 		set
 		name = #{name,jdbcType=VARCHAR},
