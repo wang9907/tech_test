@@ -1,4 +1,4 @@
-package com.summer.tech.spring;
+package com.summer.tech.spring.mybatis;
 
 import com.summer.tech.spring.mybatis.dao.StudentDao;
 import com.summer.tech.spring.mybatis.entity.StudentBo;
@@ -27,7 +27,7 @@ public class MybatisTest {
 
     @Test
     public void quertTest(){
-        int id = 1;
+        int id = 7;
         StudentBo studentBo = studentDao.selectByPrimaryKey(id);
         System.out.println(studentBo);
     }
