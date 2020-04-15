@@ -10,12 +10,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-//省略import  
+//省略import
+// 编程式事务例子
 public class TransactionTest {
 
 	private static final String CREATE_TABLE_SQL = "create table test"
@@ -28,6 +32,7 @@ public class TransactionTest {
 	private static PlatformTransactionManager txManager;
 	private static DataSource dataSource;
 	private static JdbcTemplate jdbcTemplate;
+	private static TransactionTemplate transactionTemplate;
 
 	@BeforeClass
 	public static void setUpClass() {
@@ -36,6 +41,7 @@ public class TransactionTest {
 		txManager = ctx.getBean(PlatformTransactionManager.class);
 		dataSource = ctx.getBean(DataSource.class);
 		jdbcTemplate = new JdbcTemplate(dataSource);
+		transactionTemplate = new TransactionTemplate(txManager);
 	}
 
 	@Test
@@ -74,5 +80,23 @@ public class TransactionTest {
 		} finally {
 			DataSourceUtils.releaseConnection(conn, dataSource);
 		}
+	}
+
+	// 事务模板测试
+	@Test
+	public void testTransactionTemplate(){
+		transactionTemplate.execute(new TransactionCallback<String>() {
+			@Override
+			public String doInTransaction(TransactionStatus transactionStatus) {
+				return null;
+			}
+		});
+
+		transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+
+			}
+		});
 	}
 }

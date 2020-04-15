@@ -1,11 +1,7 @@
 package com.summer.tech.spring;
 
-import com.summer.tech.spring.annotation.aop.Calculator;
-import com.summer.tech.spring.annotation.config.*;
+import com.summer.tech.spring.annotation.config.MainConfig6;
 import com.summer.tech.spring.annotation.dao.OrderDao;
-import com.summer.tech.spring.annotation.entity.Bird;
-import com.summer.tech.spring.annotation.entity.Dog;
-import com.summer.tech.spring.annotation.entity.Person;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

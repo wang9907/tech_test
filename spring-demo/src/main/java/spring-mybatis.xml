@@ -2,10 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                         http://www.springframework.org/schema/context    
-                        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+						   http://www.springframework.org/schema/aop
+						   http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						   http://www.springframework.org/schema/tx
+						   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="com.summer.tech.spring.mybatis" />
 
@@ -52,5 +58,37 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<!-- 2. 配置事务属性 -->
+	<!--<tx:advice>元素声明事务通知-->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 根据方法名指定事务的属性 -->
+			<tx:method name="*"/>
+			<!--propagation配置事务传播行为-->
+			<tx:method name="purchase" propagation="REQUIRES_NEW"/>
+			<!--isolation配置事务的隔离级别-->
+			<tx:method name="update*" isolation="SERIALIZABLE"/>
+			<!--rollback-for配置事务遇到异常必须回滚，no-rollback-for配置事务遇到异常必须不能回滚-->
+			<tx:method name="add*" rollback-for="java.io.IOException" no-rollback-for="org.springframework.beans.BeansException"/>
+			<!--read-only配置事务只读属性-->
+			<tx:method name="find*" read-only="true"/>
+			<!--timeout配置事务的超时属性-->
+			<tx:method name="get*" timeout="3"/>
+		</tx:attributes>
+
+	</tx:advice>
+
+	<!-- 3. 配置事务切入点, 以及把事务切入点和事务属性关联起来 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.summer.tech.spring.mybatis.service..*.*(..))" id="txPointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+	</aop:config>
+
+	<!-- 启用事务注解 -->
+	<!--
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	-->
+
 
 </beans>  

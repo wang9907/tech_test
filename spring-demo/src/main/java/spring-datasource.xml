@@ -67,7 +67,7 @@
             <!--isolation配置事务的隔离级别-->
             <tx:method name="update*" isolation="SERIALIZABLE"/>
             <!--rollback-for配置事务遇到异常必须回滚，no-rollback-for配置事务遇到异常必须不能回滚-->
-            <tx:method name="add*" rollback-for="java.io.IOException" no-rollback-for="com.dmsd.spring.tx.BookStockException"/>
+            <tx:method name="add*" rollback-for="java.io.IOException" no-rollback-for="org.springframework.beans.BeansException"/>
             <!--read-only配置事务只读属性-->
             <tx:method name="find*" read-only="true"/>
             <!--timeout配置事务的超时属性-->
@@ -128,6 +128,13 @@
     <!--
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    -->
+
+    <!-- JTA事务 -->
+    <!--
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManagerName" value="java:/TransactionManager" />
     </bean>
     -->
 </beans>
