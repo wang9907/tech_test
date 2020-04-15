@@ -45,7 +45,7 @@
 
 	<!-- 别名定义 -->
 	<typeAliases>
-		<typeAlias alias="pageAccessURL" type="com.lgm.mybatis.model.PageAccessURL" />
+		<typeAlias alias="student" type="com.summer.tech.spring.mybatis.entity.StudentBo" />
 	</typeAliases>
 
 	<!--自定义类型处理器 -->

@@ -1,8 +1,5 @@
 package com.summer.tech.spring.mybatis;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.summer.tech.spring.mybatis.dao.StudentDao;
 import com.summer.tech.spring.mybatis.entity.StudentBo;
 import org.apache.ibatis.io.Resources;
@@ -11,6 +8,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MybatisQuickStart {
 

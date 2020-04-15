@@ -23,9 +23,9 @@
 <!-- 	<mappers>
 		直接映射到相应的mapper文件
 		<mapper resource="sqlmapper/TUserMapper.xml" />
+		<mapper class="com.summer.tech.spring.mybatis.dao.StudentDao" />
 	</mappers> -->
 	<mappers>
-		<mapper class="com.summer.tech.spring.mybatis.dao.StudentDao" />
-        <mapper resource=""
+		<mapper resource="com/summer/tech/spring/mybatis/mapper/StudentMapper.xml" />
 	</mappers>
 </configuration>  
