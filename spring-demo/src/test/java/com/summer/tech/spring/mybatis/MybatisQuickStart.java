@@ -3,14 +3,13 @@ package com.summer.tech.spring.mybatis;
 import com.summer.tech.spring.mybatis.dao.StudentDao;
 import com.summer.tech.spring.mybatis.entity.StudentBo;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MybatisQuickStart {
 
@@ -36,6 +35,21 @@ public class MybatisQuickStart {
 		StudentBo studentBo = mapper.selectByPrimaryKey(1);
 		System.out.println(studentBo.toString());
 
+		sqlSession.select("selectAllStudent", new ResultHandler() {
+			@Override
+			public void handleResult(ResultContext resultContext) {
+				System.out.println(resultContext.getResultCount());
+			}
+		});
+		sqlSession.select("selectAllStudent",null,new RowBounds(1,2), new ResultHandler() {
+			@Override
+			public void handleResult(ResultContext resultContext) {
+				StudentBo student = (StudentBo) resultContext.getResultObject();
+				System.out.println(student.getName()+""+student.getAddress());
+			}
+		});
+		List<Object> list = sqlSession.selectList("com.summer.tech.spring.mybatis.dao.StudentDao.selectByPrimaryKey",1);
+		System.out.println(list.size());
 	}
 	
 }
