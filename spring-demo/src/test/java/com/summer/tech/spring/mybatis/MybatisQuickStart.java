@@ -51,5 +51,18 @@ public class MybatisQuickStart {
 		List<Object> list = sqlSession.selectList("com.summer.tech.spring.mybatis.dao.StudentDao.selectByPrimaryKey",1);
 		System.out.println(list.size());
 	}
-	
+
+	@Test
+	public void cacheTest(){
+		// 2.获取sqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		// 3.获取对应mapper
+		StudentDao mapper = sqlSession.getMapper(StudentDao.class);
+		// 4.执行查询语句并返回结果
+		StudentBo studentBo = mapper.selectByPrimaryKey(1);
+		System.out.println(studentBo.toString());
+		studentBo = mapper.selectByPrimaryKey(1);
+		System.out.println(studentBo.toString());
+
+	}
 }
