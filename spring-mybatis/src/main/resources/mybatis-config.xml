@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="db.properties" />
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<!--配置environment环境 -->
+	<environments default="development">
+		<!-- 环境配置1，每个SqlSessionFactory对应一个环境 -->
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 映射文件，mapper的配置文件 -->
+<!-- 	<mappers>
+		直接映射到相应的mapper文件
+		<mapper resource="sqlmapper/TUserMapper.xml" />
+		<mapper class="com.summer.tech.spring.mybatis.dao.StudentDao" />
+	</mappers> -->
+	<mappers>
+		<mapper resource="mapper/StudentMapper.xml" />
+	</mappers>
+</configuration>  
