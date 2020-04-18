@@ -19,7 +19,7 @@
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location"
-			value="classpath:jdbc.properties" />
+			value="classpath:db.properties" />
 	</bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -43,7 +43,7 @@
 	<!-- SqlSessionFactory Config -->
 	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:com/summer/tech/spring/mybatis/mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 		<property name="globalConfig" ref="globalConfig"/>
 		<property name="plugins">
 			<array>
@@ -64,7 +64,7 @@
 
 	<!-- MyBatis Mapper Scan Config  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.summer.tech.spring.mybatis.dao"/>
+		<property name="basePackage" value="com.summer.tech.spring.mybatis.mapper"/>
 	</bean>
 
 

@@ -11,4 +11,6 @@ import com.summer.tech.spring.mybatis.entity.Student;
  */
 public interface StudentMapper extends BaseMapper<Student> {
 
+    public Integer selectMaxAge();
+
 }

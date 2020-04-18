@@ -22,7 +22,7 @@ public class MybatisPlusNoSpringTest {
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
             StudentMapper mapper = session.getMapper(StudentMapper.class);
             Student student = new Student();
-            student.setName("小黄1");
+            student.setName("小黄2");
             student.setAge(18);
             student.setAddress("宝安群贤花园1");
             mapper.insert(student);

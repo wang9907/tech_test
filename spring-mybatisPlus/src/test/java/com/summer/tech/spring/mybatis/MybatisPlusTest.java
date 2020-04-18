@@ -30,6 +30,9 @@ public class MybatisPlusTest {
         int id = 1;
         Student student = studentMapper.selectById(id);
         System.out.println(student);
+
+        int maxAge = studentMapper.selectMaxAge();
+        System.out.println(maxAge);
     }
 
 }
