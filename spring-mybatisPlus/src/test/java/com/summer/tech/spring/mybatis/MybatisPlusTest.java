@@ -19,7 +19,7 @@ public class MybatisPlusTest {
     @Test
     public void insertTest(){
         Student student=new Student();
-        student.setName("小明1");
+        student.setName("小明222");
         student.setAge(8);
         student.setAddress("宝安裕丰花园1");
         studentMapper.insert(student);

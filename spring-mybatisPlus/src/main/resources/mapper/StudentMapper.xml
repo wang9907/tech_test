@@ -20,25 +20,6 @@
     -->
 	<cache eviction="LRU" flushInterval="100000" readOnly="true" size="1024"/>
 
-	<resultMap id="BaseResultMap" type="com.summer.tech.spring.mybatis.entity.Student">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="age" property="age" jdbcType="INTEGER" />
-		<result column="address" property="address" jdbcType="VARCHAR" />
-	</resultMap>
-	<sql id="Base_Column_List">
-		id, name, age, address
-	</sql>
-
-	<insert id="insert" parameterType="com.summer.tech.spring.mybatis.entity.Student">
-		insert into student (id, name,
-		age,
-		address)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-		#{age,jdbcType=INTEGER},
-		#{address,jdbcType=VARCHAR})
-	</insert>
-
 	<select id="selectMaxAge" resultType="java.lang.Integer">
 		select max(age) from student
 	</select>
