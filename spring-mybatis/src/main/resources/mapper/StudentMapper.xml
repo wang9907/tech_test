@@ -25,22 +25,57 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="INTEGER" />
 	</resultMap>
+	<resultMap id="studentMap" type="com.summer.tech.spring.mybatis.entity.Student">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR"  />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="INTEGER" />
+
+		<association property="studentIdcard" javaType="com.summer.tech.spring.mybatis.entity.StudentIdcard">
+			<id property="id" column="id"></id>
+			<result property="studentId" column="student_id" />
+			<result column="idcard" property="idcard" />
+			<result column="create_time" property="createTime" />
+		</association>
+
+		<collection property="bankCards" ofType="com.summer.tech.spring.mybatis.entity.BankCard" >
+			<id property="id" column="card_id" />
+			<result column="student_id" property="studentId" />
+			<result column="bank" property="bank" />
+			<result column="bank_card" property="bankCard" />
+		</collection>
+
+		<discriminator javaType="int" column="gender">
+			<case value="1" resultMap="maleStudentMap"/>
+			<case value="2" resultMap="femaleStudentMap"/>
+		</discriminator>
+	</resultMap>
+
+	<resultMap id="maleStudentMap" type="com.summer.tech.spring.mybatis.entity.MaleStudent" extends="studentMap">
+		<collection property="maleHealthForms" select="com.summer.tech.spring.mybatis.mapper.MaleHealthFormMapper.findMaleHealthByStudentId" column="id" />
+	</resultMap>
+
+	<resultMap id="femaleStudentMap" type="com.summer.tech.spring.mybatis.entity.FemaleStudent" extends="studentMap">
+		<collection property="femaleHealthForms" select="com.summer.tech.spring.mybatis.mapper.FealeHealthFormMapper.findFemaleHealthByStudentId" column="id" />
+	</resultMap>
+
 	<sql id="Base_Column_List">
-		id, name, age, address
+		id, name, age, address, gender
 	</sql>
 
-
-
-	<!--自己新增的方法 -->
 	<select id="selectAllStudent" resultMap="BaseResultMap" >
-		select
-		*
-		from student
+		select * from student
 	</select>
 
+	<select id="selectStudentAndIdcard" resultMap="studentMap" >
+		select a.*,b.*,c.id as cardId,c.bank,c.bank_card from student a LEFT JOIN student_idcard b ON a.id=b.student_id
+		LEFT JOIN bank_card c ON  c.student_id=a.id
+	</select>
 
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+	<select id="selectByPrimaryKey" resultMap="studentMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -48,23 +83,22 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
-
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		student
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
-
 	<insert id="insert" parameterType="com.summer.tech.spring.mybatis.entity.Student">
 		insert into student (id, name,
 		age,
-		address)
+		address,
+		gender)
 		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{age,jdbcType=INTEGER},
-		#{address,jdbcType=VARCHAR})
+		#{address,jdbcType=VARCHAR},
+		#{gender,jdbcType=INTEGER})
 	</insert>
-
 
 	<insert id="insertSelective" parameterType="com.summer.tech.spring.mybatis.entity.Student">
 		insert into student
@@ -81,6 +115,9 @@
 			<if test="address != null">
 				address,
 			</if>
+			<if test="gender != null">
+				gender,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -95,9 +132,11 @@
 			<if test="address != null">
 				#{address,jdbcType=VARCHAR},
 			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
-
 
 	<update id="updateByPrimaryKeySelective" parameterType="com.summer.tech.spring.mybatis.entity.Student">
 		update student
@@ -111,18 +150,20 @@
 			<if test="address != null">
 				address = #{address,jdbcType=VARCHAR},
 			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=INTEGER},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-
 
 	<update id="updateByPrimaryKey" parameterType="com.summer.tech.spring.mybatis.entity.Student">
 		update student
 		set
 		name = #{name,jdbcType=VARCHAR},
 		age = #{age,jdbcType=INTEGER},
-		address
-		= #{address,jdbcType=VARCHAR}
+		address= #{address,jdbcType=VARCHAR},
+		gender= #{gender,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

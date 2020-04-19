@@ -6,43 +6,34 @@
 	<!-- 引入配置文件 -->
 	<properties resource="db.properties" />
 
-
 	<classPathEntry location="${class_path}" />
+
 	<context id="context1" targetRuntime="MyBatis3">
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 			<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
-		<jdbcConnection driverClass="${jdbc_driver}"
-			connectionURL="${jdbc_url}" userId="${jdbc_username}" password="${jdbc_password}" />
-		<javaModelGenerator targetPackage="com.enjoylearning.mybatis.entity"
-			targetProject="${project_src}" />
-		<sqlMapGenerator targetPackage="." targetProject="${project_mapper_xml}" />
-		<javaClientGenerator targetPackage="com.enjoylearning.mybatis.mapper"
-			targetProject="${project_src}" type="XMLMAPPER" />
+		<jdbcConnection driverClass="${jdbc.driver}"
+						connectionURL="${jdbc.url}"
+						userId="${jdbc.username}"
+						password="${jdbc.password}" />
+		<!--生成实体类，要配置绝对路径才行，用相对路径src/main/java-->
+		<javaModelGenerator targetPackage="com.summer.tech.spring.mybatis.entity"
+			targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/java"  />
+		<!--生成映射文件,要配置绝对路径才行，用相对路径src/main/resources/mapper不行-->
+		<sqlMapGenerator targetPackage="." targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/resources/mapper" />
+		<!--生成Mapper接口,要配置绝对路径才行，用相对路径src/main/java-->
+		<javaClientGenerator targetPackage="com.summer.tech.spring.mybatis.mapper"
+			targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/java" type="XMLMAPPER" />
+
 		<!-- shema 数据库 tableName表明 -->
-
-
-
-		
-		<table schema="${jdbc_username}" tableName="t_job_history"
+		<table schema="test" tableName="male_health_form"
 			 enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" type="post"/>
 		</table>
-		
-	<!-- 	<table schema="${jdbc_username}" tableName="t_user"
-			 enableCountByExample="false"
-			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-
-		<table schema="${jdbc_username}" tableName="t_user_role"
-			 enableCountByExample="false"
-			enableUpdateByExample="false" enableDeleteByExample="false"
-			enableSelectByExample="false" selectByExampleQueryId="false">
-		</table> -->
 
 	</context>
 </generatorConfiguration>

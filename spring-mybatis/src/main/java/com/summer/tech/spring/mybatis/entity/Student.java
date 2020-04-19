@@ -1,6 +1,8 @@
 package com.summer.tech.spring.mybatis.entity;
 
+import java.awt.print.PrinterGraphics;
 import java.io.Serializable;
+import java.util.List;
 
 public class Student implements Serializable {
 
@@ -13,6 +15,12 @@ public class Student implements Serializable {
     private Integer age;
 
     private String address;
+
+    private int gender;
+
+    private StudentIdcard studentIdcard;
+
+    private List<BankCard> bankCards;
 
     public Integer getId() {
         return id;
@@ -44,6 +52,30 @@ public class Student implements Serializable {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public StudentIdcard getStudentIdcard() {
+        return studentIdcard;
+    }
+
+    public void setStudentIdcard(StudentIdcard studentIdcard) {
+        this.studentIdcard = studentIdcard;
+    }
+
+    public List<BankCard> getBankCards() {
+        return bankCards;
+    }
+
+    public void setBankCards(List<BankCard> bankCards) {
+        this.bankCards = bankCards;
     }
 
     @Override
