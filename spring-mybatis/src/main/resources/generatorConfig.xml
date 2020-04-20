@@ -20,15 +20,15 @@
 						password="${jdbc.password}" />
 		<!--生成实体类，要配置绝对路径才行，用相对路径src/main/java-->
 		<javaModelGenerator targetPackage="com.summer.tech.spring.mybatis.entity"
-			targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/java"  />
+			targetProject="C:/Users/000807/git/tech_test/spring-mybatis/src/main/java"  />
 		<!--生成映射文件,要配置绝对路径才行，用相对路径src/main/resources/mapper不行-->
-		<sqlMapGenerator targetPackage="." targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/resources/mapper" />
+		<sqlMapGenerator targetPackage="." targetProject="C:/Users/000807/git/tech_test/spring-mybatis/src/main/resources/mapper" />
 		<!--生成Mapper接口,要配置绝对路径才行，用相对路径src/main/java-->
 		<javaClientGenerator targetPackage="com.summer.tech.spring.mybatis.mapper"
-			targetProject="C:/Users/Administrator/git/tech_test/spring-mybatis/src/main/java" type="XMLMAPPER" />
+			targetProject="C:/Users/000807/git/tech_test/spring-mybatis/src/main/java" type="XMLMAPPER" />
 
 		<!-- shema 数据库 tableName表明 -->
-		<table schema="test" tableName="male_health_form"
+		<table schema="test" tableName="account"
 			 enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false"
 			enableSelectByExample="false" selectByExampleQueryId="false">
