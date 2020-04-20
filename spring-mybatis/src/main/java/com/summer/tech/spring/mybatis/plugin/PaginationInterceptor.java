@@ -28,10 +28,8 @@ public class PaginationInterceptor implements Interceptor {
         String originalSql = (String)metaobject.getValue("delegate.boundSql.sql");
         LOGGER.info("originalSql:"+originalSql);
         if(rowBounds ==null || rowBounds==RowBounds.DEFAULT){
-            invocation.proceed();
+            return invocation.proceed();
         }
-
-
         metaobject.setValue("delegate.rowBounds.offset",RowBounds.NO_ROW_OFFSET);
         metaobject.setValue("delegate.rowBounds.offset",RowBounds.NO_ROW_LIMIT);
         return invocation.proceed();

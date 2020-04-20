@@ -6,14 +6,19 @@ import com.summer.tech.spring.mybatis.entity.Student;
 import com.summer.tech.spring.mybatis.entity.User;
 import com.summer.tech.spring.mybatis.mapper.StudentMapper;
 import com.summer.tech.spring.mybatis.mapper.UserMapper;
+import com.sun.org.apache.xpath.internal.SourceTree;
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import javax.xml.transform.Source;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-mybatis.xml" })
@@ -66,18 +71,30 @@ public class SpringMybatisTest {
     @Test
     public void annotationUpdateTest(){
         User user = new User();
-        user.setName("网络小兵是是 ");
+        user.setName("网络ffff");
         user.setGender((byte)1);
         user.setAddress("我来自中国");
         user.setBirthday(new Date());
-        userMapper.insert(user);
+        userMapper.saveUser(user);
 
-        userMapper.deleteByPrimaryKey(3);
+        //userMapper.deleteByPrimaryKey(3);
     }
 
     @Test
     public void annotationQueryTest(){
         List<User> list = userMapper.findAll();
+        for(User user:list){
+            System.out.println(user.getName());
+            System.out.println(user.getAccounts());
+        }
+    }
+
+    @Test
+    public void annotationProviderQueryTest(){
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("name","网络ffff");
+        List<User> list = userMapper.selectWhitParamSql(map);
+        System.out.println(list.size());
         for(User user:list){
             System.out.println(user.getName());
             System.out.println(user.getAccounts());

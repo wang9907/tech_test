@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 针对crud有四个注解
@@ -46,7 +47,10 @@ public interface UserMapper {
    @Select("select count(*) from user")
    Integer findTotal();
 
-   void insert(User user);
+    @SelectProvider(type = UserDynamicSqlProvider.class, method = "selectWhitParamSql")
+    List<User> selectWhitParamSql(Map<String, Object> param);
+
+    void insert(User user);
 
     int deleteByPrimaryKey(Integer id);
 
