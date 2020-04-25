@@ -34,7 +34,7 @@ public class ModeAttributeController {
 		return Arrays.asList("北京", "山东");
 	}
 
-	@ModelAttribute("user1")
+	@ModelAttribute("user")
 	public UserModel getUser(
 			@RequestParam(value = "username", defaultValue = "") String username) {
 		// TODO 去数据库根据用户名查找用户对象

@@ -20,20 +20,21 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-mvc.xml</param-value>
+			<param-value>classpath:spring-mvc.xml,classpath:spring-mvc-old.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.htm</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!--
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
+	-->
 	<servlet>
 	    <servlet-name>forwarding</servlet-name>
 	    <servlet-class>com.summer.tech.springmvc.servlet.ForwardingServlet</servlet-class>
@@ -48,4 +49,5 @@
 		<url-pattern>/websocket/*</url-pattern>
 	</servlet-mapping>
 	 -->
+
 </web-app>

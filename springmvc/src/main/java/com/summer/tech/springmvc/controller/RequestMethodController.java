@@ -1,24 +1,32 @@
 package com.summer.tech.springmvc.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/customers/**")
-// ①处理器的通用映射前缀
+@RequestMapping("/test")
 public class RequestMethodController {
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	// ②类级别的@RequestMapping窄化
-	public String showForm() {
-		System.out.println("===============GET");
-		return "customer/create";
+
+	@RequestMapping(value = "/cookie", method = RequestMethod.GET)
+	public String cookie(@CookieValue("JSESSIONID") String sessionId, @RequestParam(value = "name") String username , Model model) {
+		System.out.println("sessionId:"+sessionId);
+		model.addAttribute("name",username);
+		return "test";
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	// ③类级别的@RequestMapping窄化
-	public String submit() {
-		System.out.println("================POST");
-		return "redirect:/success";
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	public String getUser(@PathVariable(value = "userId") String userId) {
+		System.out.println("userId:"+userId);
+		return "test";
 	}
+
+	@RequestMapping(value = "/header", method = RequestMethod.GET)
+	public String header(@RequestHeader(value = "User-Agent") String userAgent,@RequestHeader(value = "Accept") String[] accepts) {
+		System.out.println("userAgent:"+userAgent);
+		System.out.println("Accept:"+accepts);
+		return "test";
+	}
+
 }
