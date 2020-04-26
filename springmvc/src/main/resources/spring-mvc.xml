@@ -29,31 +29,30 @@
 	
 	<context:component-scan base-package="com.summer.tech.springmvc.controller" />
     <context:component-scan base-package="com.summer.tech.springmvc.service" />
-	<context:component-scan base-package="com.summer.tech.springmvc.config" />
 
-	<!-- 
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">  
-	    <property name="converters">  
+	    <property name="converters">
 	       <list>  
 	            <bean class="com.summer.tech.springmvc.utils.StringToPhoneNumberConverter"/>  
 	        </list>  
-	    </property>  
-	</bean>   
+	    </property>
+	</bean>
 	<bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">  
 	    <property name="conversionService" ref="conversionService"/>  
 	    <property name="validator" ref="validator"></property>
 	</bean> 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
 		<property name="webBindingInitializer" ref="webBindingInitializer"/>  
-	</bean> 
-	 -->
+	</bean>
 	
 	<!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->  
-	<!--<bean id="validator"   
+	<bean id="validator"
 	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">  
-	        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>  
-	 -->      <!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->  
-	 <!-- <property name="validationMessageSource" ref="messageSource"/>  
-	</bean> -->
+	        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+		<!--
+		<property name="validationMessageSource" ref="messageSource"/>
+		-->
+	</bean>
 
 </beans>

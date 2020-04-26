@@ -4,6 +4,14 @@ public class PhoneNumberModel {
 	private String areaCode;// 区号
 	private String phoneNumber;// 电话号码
 
+	public PhoneNumberModel() {
+	}
+
+	public PhoneNumberModel(String areaCode, String phoneNumber) {
+		this.areaCode = areaCode;
+		this.phoneNumber = phoneNumber;
+	}
+
 	public String getAreaCode() {
 		return areaCode;
 	}
