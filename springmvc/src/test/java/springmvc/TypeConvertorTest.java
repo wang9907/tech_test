@@ -2,6 +2,7 @@ package springmvc;
 
 import com.summer.tech.springmvc.entity.FormatterModel;
 import com.summer.tech.springmvc.entity.PhoneNumberModel;
+import com.summer.tech.springmvc.utils.PhoneNumberFormatAnnotationFormatterFactory;
 import com.summer.tech.springmvc.utils.PhoneNumberFormatter;
 import com.summer.tech.springmvc.utils.StringToPhoneNumberConverter;
 import org.junit.Assert;
@@ -80,7 +81,31 @@ public class TypeConvertorTest {
 
         Assert.assertEquals("10,000", conversionService.convert(model.getTotalCount(), descriptor, stringDescriptor));
         Assert.assertEquals(model.getTotalCount(), conversionService.convert("10,000", stringDescriptor, descriptor));
+
+        descriptor = new TypeDescriptor(FormatterModel.class.getDeclaredField("registerDate"));
+        Assert.assertEquals("2012-05-01", conversionService.convert(model.getRegisterDate(), descriptor, stringDescriptor));
+        Assert.assertEquals(model.getRegisterDate(), conversionService.convert("2012-05-01", stringDescriptor, descriptor));
+
+        descriptor = new TypeDescriptor(FormatterModel.class.getDeclaredField("orderDate"));
+        Assert.assertEquals("2012-05-01 20:18:18", conversionService.convert(model.getOrderDate(), descriptor, stringDescriptor));
+        Assert.assertEquals(model.getOrderDate(), conversionService.convert("2012-05-01 20:18:18", stringDescriptor, descriptor));
     }
 
+    @Test
+    public void testCustomAnnotation() throws NoSuchFieldException {
+        DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+        conversionService.addFormatterForFieldAnnotation(new PhoneNumberFormatAnnotationFormatterFactory());
 
+        FormatterModel formatterModel = new FormatterModel();
+        TypeDescriptor phoneType = new TypeDescriptor(FormatterModel.class.getDeclaredField("phoneNumberModel"));
+        TypeDescriptor stringType = TypeDescriptor.valueOf(String.class);
+
+        PhoneNumberModel model = (PhoneNumberModel)conversionService.convert("010-12345678", stringType, phoneType);
+        formatterModel.setPhoneNumberModel(model);
+        System.out.println(model.getPhoneNumber());
+
+        String phoneNumber = (String)conversionService.convert(formatterModel.getPhoneNumberModel(), phoneType, stringType);
+        System.out.println(phoneNumber);
+
+    }
 }

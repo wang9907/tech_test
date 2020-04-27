@@ -1,11 +1,12 @@
 package com.summer.tech.springmvc.entity;
 
-import java.util.Date;
-
+import com.summer.tech.springmvc.utils.PhoneNumber;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
+
+import java.util.Date;
 
 public class FormatterModel {
 	@NumberFormat(style = Style.NUMBER, pattern = "#,###")
@@ -20,6 +21,9 @@ public class FormatterModel {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date orderDate;
+
+	@PhoneNumber
+	private PhoneNumberModel phoneNumberModel;
 
 	public int getTotalCount() {
 		return totalCount;
@@ -61,4 +65,11 @@ public class FormatterModel {
 		this.orderDate = orderDate;
 	}
 
+	public PhoneNumberModel getPhoneNumberModel() {
+		return phoneNumberModel;
+	}
+
+	public void setPhoneNumberModel(PhoneNumberModel phoneNumberModel) {
+		this.phoneNumberModel = phoneNumberModel;
+	}
 }
