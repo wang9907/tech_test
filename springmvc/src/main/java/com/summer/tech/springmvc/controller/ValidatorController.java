@@ -26,6 +26,7 @@ public class ValidatorController {
     }
 
     // 使用类型转换器和格式化器的方式就是无法进行转换，需要在这里做下类型注册，使用转换服务不生效
+    // 原因找到了，是配置了mvc:annotation-driven元素，导致转换服务注册无效
     @InitBinder
    public void InitBinder(WebDataBinder webDataBinder, WebRequest webRequest){
         webDataBinder.registerCustomEditor(PhoneNumberModel.class, new PhoneNumberEditor());

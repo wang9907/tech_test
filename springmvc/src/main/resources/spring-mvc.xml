@@ -12,7 +12,7 @@
 
 	<mvc:default-servlet-handler  />
 
-	<mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService" validator="validator">
 		<mvc:message-converters register-defaults="true">
 			<!-- 解决返回字符串乱码 -->
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -42,26 +42,25 @@
 			</list>
 		</property>
 	</bean>
+
+	<!-- 使用mvc:annotation-driven 配置下面的配置是不起作用的，转换服务和验证器可以在mvc:annotation-driven元素里面配置-->
+	<!--
 	<bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">  
 	    <property name="conversionService" ref="conversionService"/>
 		<property name="validator" ref="validator"></property>
-
 	</bean> 
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
 		<property name="webBindingInitializer" ref="webBindingInitializer"/>  
 	</bean>
+	-->
 	
-	<!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
-
+	<!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会自动注册，也就是说下面的配置不起作用validator和messageSource-->
 	<bean id="validator"
 	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 	        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
-
 		<!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
 		<property name="validationMessageSource" ref="messageSource"/>
-
 	</bean>
-
 
 	<!-- 错误消息 -->
 	<bean id="messageSource"
