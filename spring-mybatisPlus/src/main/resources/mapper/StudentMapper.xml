@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.summer.tech.spring.mybatis.mapper.StudentMapper">
+<mapper namespace="StudentMapper">
 	<!--开启本mapper的namespace下的二级缓存-->
 	<!--
         eviction:代表的是缓存回收策略，目前MyBatis提供以下策略。

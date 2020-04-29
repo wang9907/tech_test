@@ -48,7 +48,7 @@
 		<property name="plugins" ref="inteceptortest"></property>
 	</bean>
 
-	<bean id="inteceptortest" class="com.summer.tech.spring.mybatis.plugin.PaginationInterceptor" />
+	<bean id="inteceptortest" class="com.summer.tech.mybatis.plugin.PaginationInterceptor" />
 	<!-- DAO接口所在包名，Spring会自动查找其下的类，这个很重要，缺少了就会注入Dao层失败报错 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.summer.tech.spring.mybatis.mapper" />

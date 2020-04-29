@@ -20,7 +20,7 @@
 	</environments>
 
 	<plugins>
-		<plugin interceptor="com.summer.tech.spring.mybatis.plugin.PaginationInterceptor"></plugin>
+		<plugin interceptor="com.summer.tech.mybatis.plugin.PaginationInterceptor"></plugin>
 	</plugins>
 	<!-- 映射文件，mapper的配置文件 -->
 <!-- 	<mappers>

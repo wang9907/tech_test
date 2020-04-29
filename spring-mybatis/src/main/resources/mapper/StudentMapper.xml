@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.summer.tech.spring.mybatis.mapper.StudentMapper">
+<mapper namespace="StudentMapper">
 	<!--开启本mapper的namespace下的二级缓存-->
 	<!--
         eviction:代表的是缓存回收策略，目前MyBatis提供以下策略。
@@ -20,28 +20,28 @@
     -->
 	<cache eviction="LRU" flushInterval="100000" readOnly="true" size="1024"/>
 
-	<resultMap id="BaseResultMap" type="com.summer.tech.spring.mybatis.entity.Student">
+	<resultMap id="BaseResultMap" type="Student">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="age" property="age" jdbcType="INTEGER" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
 		<result column="gender" property="gender" jdbcType="INTEGER" />
 	</resultMap>
-	<resultMap id="studentMap" type="com.summer.tech.spring.mybatis.entity.Student">
+	<resultMap id="studentMap" type="Student">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR"  />
 		<result column="age" property="age" jdbcType="INTEGER" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
 		<result column="gender" property="gender" jdbcType="INTEGER" />
 
-		<association property="studentIdcard" javaType="com.summer.tech.spring.mybatis.entity.StudentIdcard">
+		<association property="studentIdcard" javaType="com.summer.tech.mybatis.entity.StudentIdcard">
 			<id property="id" column="id"></id>
 			<result property="studentId" column="student_id" />
 			<result column="idcard" property="idcard" />
 			<result column="create_time" property="createTime" />
 		</association>
 
-		<collection property="bankCards" ofType="com.summer.tech.spring.mybatis.entity.BankCard" >
+		<collection property="bankCards" ofType="com.summer.tech.mybatis.entity.BankCard" >
 			<id property="id" column="card_id" />
 			<result column="student_id" property="studentId" />
 			<result column="bank" property="bank" />
@@ -54,11 +54,11 @@
 		</discriminator>
 	</resultMap>
 
-	<resultMap id="maleStudentMap" type="com.summer.tech.spring.mybatis.entity.MaleStudent" extends="studentMap">
-		<collection property="maleHealthForms" select="com.summer.tech.spring.mybatis.mapper.MaleHealthFormMapper.findMaleHealthByStudentId" column="id" />
+	<resultMap id="maleStudentMap" type="com.summer.tech.mybatis.entity.MaleStudent" extends="studentMap">
+		<collection property="maleHealthForms" select="com.summer.tech.mybatis.mapper.MaleHealthFormMapper.findMaleHealthByStudentId" column="id" />
 	</resultMap>
 
-	<resultMap id="femaleStudentMap" type="com.summer.tech.spring.mybatis.entity.FemaleStudent" extends="studentMap">
+	<resultMap id="femaleStudentMap" type="com.summer.tech.mybatis.entity.FemaleStudent" extends="studentMap">
 		<collection property="femaleHealthForms" select="com.summer.tech.spring.mybatis.mapper.FealeHealthFormMapper.findFemaleHealthByStudentId" column="id" />
 	</resultMap>
 
@@ -89,7 +89,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="insert" parameterType="com.summer.tech.spring.mybatis.entity.Student">
+	<insert id="insert" parameterType="Student">
 		insert into student (id, name,
 		age,
 		address,
@@ -100,7 +100,7 @@
 		#{gender,jdbcType=INTEGER})
 	</insert>
 
-	<insert id="insertSelective" parameterType="com.summer.tech.spring.mybatis.entity.Student">
+	<insert id="insertSelective" parameterType="Student">
 		insert into student
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -138,7 +138,7 @@
 		</trim>
 	</insert>
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.summer.tech.spring.mybatis.entity.Student">
+	<update id="updateByPrimaryKeySelective" parameterType="Student">
 		update student
 		<set>
 			<if test="name != null">
@@ -157,7 +157,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
-	<update id="updateByPrimaryKey" parameterType="com.summer.tech.spring.mybatis.entity.Student">
+	<update id="updateByPrimaryKey" parameterType="Student">
 		update student
 		set
 		name = #{name,jdbcType=VARCHAR},
