@@ -1,13 +1,12 @@
 package com.summer.tech.springboot.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Enumeration;
 
 public class MyServlet extends HttpServlet {
 
@@ -36,10 +35,12 @@ public class MyServlet extends HttpServlet {
 		String line = null;
 		StringBuilder sb = new StringBuilder();
 		while ((line = reader.readLine()) != null) {
-			sb.append(line);
+			//sb.append(line);
+            System.out.println(line);
 		}
-		System.out.println(sb.toString());
+		//System.out.println(sb.toString());
 		resp.getWriter().println("测试内容");
-	}
+
+    }
 
 }
