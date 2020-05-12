@@ -15,7 +15,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 //@EnableAutoConfiguration(exclude = {JpaRepositoriesAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-//@EntityScan("com.summer.tech.springboot.entity")
+//@EntityScan("com.summer.tech.springboot.jpa.entity")
 //@EnableJpaRepositories(basePackages ="com.summer.tech.springboot")
 public class DatasourceTest {
 

@@ -1,6 +1,6 @@
 package com.summer.tech.springboot.utils;
 
-import com.summer.tech.springboot.entity.Result;
+import com.summer.tech.springboot.jpa.entity.Result;
 
 public class ResultUtil {
 

@@ -1,4 +1,4 @@
-package com.summer.tech.springboot.entity;
+package com.summer.tech.springboot.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

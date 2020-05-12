@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.summer.tech.springboot.entity.Result;
+import com.summer.tech.springboot.jpa.entity.Result;
 import com.summer.tech.springboot.exception.PersonException;
 import com.summer.tech.springboot.utils.ResultUtil;
 

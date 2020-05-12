@@ -1,11 +1,10 @@
-package com.summer.tech.springboot.config;
+package com.summer.tech.springboot.jpa.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -20,29 +19,27 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		entityManagerFactoryRef="entityManagerFactoryPrimary",
-		transactionManagerRef="transactionManagerPrimary",
-		basePackages={"com.summer.tech.springboot"})
-public class PrimaryDataSourceConfig {
-
+		entityManagerFactoryRef="entityManagerFactoryOther",
+		transactionManagerRef="transactionManagerOther",
+	    basePackages={"com.summer.tech.springboot"})
+public class OtherDataSourceConfig {
+ 
 	@Autowired
-	@Qualifier("dataSource1")
-	private DataSource dataSource;
+	@Qualifier("dataSource2")
+	private DataSource otherDataSource;
 	
-	@Primary
-	@Bean(name="entityManagerPrimary")
+	@Bean(name="entityManagerOther")
 	public EntityManager entityManager(EntityManagerFactoryBuilder builder){
 		return entityManagerFactoryBean(builder).getObject().createEntityManager();
 	}
 	
-	@Primary
-	@Bean(name="entityManagerFactoryPrimary")
+	@Bean(name="entityManagerFactoryOther")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(EntityManagerFactoryBuilder builder){
 		return builder
-				.dataSource(dataSource)
+				.dataSource(otherDataSource)
 				.properties(getProperties())
 				.packages("com.summer.tech.springboot")
-				.persistenceUnit("primaryPersistentUnit")
+				.persistenceUnit("otherPersistentUnit")
 				.build();
 	}
 	
@@ -50,12 +47,11 @@ public class PrimaryDataSourceConfig {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("format_sql", "true");
 		map.put("max_fetch_depth", "1");
+		//map.put("dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
 		return map;
 	}
 	
-	
-	@Primary
-	@Bean(name="transactionManagerPrimary")
+	@Bean(name="transactionManagerOther")
 	public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder){
 		return new JpaTransactionManager(entityManagerFactoryBean(builder).getObject());
 	}

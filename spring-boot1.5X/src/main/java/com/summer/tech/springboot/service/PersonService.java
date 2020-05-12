@@ -1,8 +1,8 @@
 package com.summer.tech.springboot.service;
 
-import com.summer.tech.springboot.entity.Person;
-import com.summer.tech.springboot.respository.OrderRespository;
-import com.summer.tech.springboot.respository.PersonRespository;
+import com.summer.tech.springboot.jpa.entity.Person;
+import com.summer.tech.springboot.jpa.respository.OrderRespository;
+import com.summer.tech.springboot.jpa.respository.PersonRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;

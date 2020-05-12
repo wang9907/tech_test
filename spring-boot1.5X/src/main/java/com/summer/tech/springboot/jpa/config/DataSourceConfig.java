@@ -1,4 +1,4 @@
-package com.summer.tech.springboot.config;
+package com.summer.tech.springboot.jpa.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
