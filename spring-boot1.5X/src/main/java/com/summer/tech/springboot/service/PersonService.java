@@ -1,28 +1,38 @@
 package com.summer.tech.springboot.service;
 
+import com.summer.tech.springboot.entity.Person;
+import com.summer.tech.springboot.respository.OrderRespository;
+import com.summer.tech.springboot.respository.PersonRespository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.transaction.Transactional;
+
 public class PersonService {
 
-	// @Autowired
-	// private PersonRespository respository;
-	//
-	// @Transactional
-	// public void insertTwo() {
-	// Person person = new Person();
-	// person.setName("刘虎林");
-	// person.setGender("男");
-	// person.setAge(12);
-	// respository.save(person);
-	//
-	// person = new Person();
-	// person.setName("刘虎林");
-	// person.setGender("男");
-	// person.setAge(12);
-	// respository.save(person);
-	//
-	// }
-	//
-	// public Person findById(Integer id){
-	// return respository.findOne(id);
-	// }
-	//
+    @Autowired
+    private PersonRespository personRespository;
+    @Autowired
+    private OrderRespository orderRespository;
+
+    @Transactional
+    public void insertTwo() {
+        Person person = new Person();
+        person.setName("刘虎林");
+        person.setGender("男");
+        person.setAge(12);
+        personRespository.save(person);
+
+        person = new Person();
+        person.setName("刘虎林");
+        person.setGender("男");
+        person.setAge(12);
+        personRespository.save(person);
+
+    }
+
+    public Person findById(Integer id) {
+        Person person = personRespository.findOne(id);
+        return person;
+    }
+
 }

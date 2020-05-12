@@ -28,7 +28,9 @@ public class DatasourceTest {
     @Test
     public void query(){
 // 获取配置的数据源
-        DataSource dataSource = applicationContext.getBean(DataSource.class);
+        DataSource dataSource = applicationContext.getBean("dataSource1",DataSource.class);
+        String[] beanNames = applicationContext.getBeanNamesForType(DataSource.class);
+        System.out.println(beanNames);
         // 查看配置数据源信息
         System.out.println(dataSource);
         System.out.println(dataSource.getClass().getName());
