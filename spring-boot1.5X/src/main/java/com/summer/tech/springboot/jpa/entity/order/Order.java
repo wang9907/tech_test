@@ -1,14 +1,14 @@
-package com.summer.tech.springboot.jpa.entity;
+package com.summer.tech.springboot.jpa.entity.order;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "order")
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name="order_code")
     private String orderCode;

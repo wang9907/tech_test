@@ -1,6 +1,6 @@
-package com.summer.tech.springboot.jpa.respository;
+package com.summer.tech.springboot.jpa.respository.person;
 
-import com.summer.tech.springboot.jpa.entity.Person;
+import com.summer.tech.springboot.jpa.entity.person.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

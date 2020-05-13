@@ -22,7 +22,8 @@ import java.util.Map;
 @EnableJpaRepositories(
 		entityManagerFactoryRef="entityManagerFactoryPrimary",
 		transactionManagerRef="transactionManagerPrimary",
-		basePackages={"com.summer.tech.springboot"})
+		// Repository定义所在的包
+		basePackages={"com.summer.tech.springboot.jpa.respository.person"})
 public class PrimaryDataSourceConfig {
 
 	@Autowired
@@ -41,7 +42,7 @@ public class PrimaryDataSourceConfig {
 		return builder
 				.dataSource(dataSource)
 				.properties(getProperties())
-				.packages("com.summer.tech.springboot")
+				.packages("com.summer.tech.springboot.jpa.entity.person") // Entity定义所在的包
 				.persistenceUnit("primaryPersistentUnit")
 				.build();
 	}

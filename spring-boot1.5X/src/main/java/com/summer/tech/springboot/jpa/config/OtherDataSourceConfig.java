@@ -21,7 +21,8 @@ import java.util.Map;
 @EnableJpaRepositories(
 		entityManagerFactoryRef="entityManagerFactoryOther",
 		transactionManagerRef="transactionManagerOther",
-	    basePackages={"com.summer.tech.springboot"})
+		// Repository定义所在的包
+	    basePackages={"com.summer.tech.springboot.jpa.respository.order"})
 public class OtherDataSourceConfig {
  
 	@Autowired
@@ -38,7 +39,7 @@ public class OtherDataSourceConfig {
 		return builder
 				.dataSource(otherDataSource)
 				.properties(getProperties())
-				.packages("com.summer.tech.springboot")
+				.packages("com.summer.tech.springboot.jpa.entity.order")// Entity定义所在的包
 				.persistenceUnit("otherPersistentUnit")
 				.build();
 	}

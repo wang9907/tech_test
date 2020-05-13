@@ -1,12 +1,10 @@
-package com.summer.tech.springboot.jpa.entity;
+package com.summer.tech.springboot.jpa.entity.person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 @Entity
+@Table(name = "person")
 public class Person {
 
 	@Id

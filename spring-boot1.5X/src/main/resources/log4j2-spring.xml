@@ -93,6 +93,9 @@
             <appender-ref ref="RollingFileWarn"/>
             <appender-ref ref="RollingFileError"/>
         </root>
+        <Logger name="com.atomikos" level="info" additivity="false" >
+            <AppenderRef ref="Console"/>
+        </Logger>
     </loggers>
 
 </configuration>
