@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -30,11 +31,11 @@ public class DatasourceTest {
 // 获取配置的数据源
         DataSource dataSource = applicationContext.getBean("dataSource1",DataSource.class);
         String[] beanNames = applicationContext.getBeanNamesForType(DataSource.class);
-        System.out.println(beanNames);
+        System.out.println(Arrays.toString(beanNames));
         // 查看配置数据源信息
         System.out.println(dataSource);
         System.out.println(dataSource.getClass().getName());
-        System.out.println(dataSourceProperties);
+        System.out.println(dataSourceProperties.toString());
 
         //执行SQL,输出查到的数据
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

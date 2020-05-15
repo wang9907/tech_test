@@ -116,7 +116,7 @@
 	</dependencies>
 
 	<build>
-        <finalName>spring-boot1.5X</finalName>
+        <finalName>spring-boot2.0X</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
